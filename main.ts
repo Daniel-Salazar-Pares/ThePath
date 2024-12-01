@@ -1,15 +1,15 @@
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (demon.vy == 0) {
-        demon.vy = -200
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite2, location2) {
+    game.gameOver(false)
+    game.setGameOverEffect(false, effects.melt)
+})
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (demon.x == 0) {
+        demon.vy = 5
     }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite, location) {
     game.gameOver(true)
     game.setGameOverEffect(true, effects.confetti)
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
-    game.gameOver(false)
-    game.setGameOverEffect(false, effects.melt)
 })
 let demon: Sprite = null
 scene.setBackgroundColor(9)
