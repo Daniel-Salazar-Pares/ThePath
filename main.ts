@@ -1,94 +1,71 @@
 namespace SpriteKind {
     export const Abrusto = SpriteKind.create()
+    export const slime = SpriteKind.create()
+    export const slimespawn = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite3, location) {
     game.gameOver(true)
     game.setGameOverEffect(true, effects.confetti)
 })
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (jump_count < 2) {
+        knight.vy = -200
+        jump_count += 1
+    }
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite2, location2) {
     game.gameOver(false)
     game.setGameOverEffect(false, effects.melt)
 })
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (demon.x == 0) {
-        demon.vy = 5
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite4, otherSprite2) {
+    sprites.destroy(otherSprite2)
+    if (knight.y + 5 < otherSprite2.y) {
+        info.changeScoreBy(1)
+    } else {
+        info.changeLifeBy(-1)
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Abrusto, function (sprite, otherSprite) {
     sprites.destroy(otherSprite)
     bee = sprites.create(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . f 1 1 1 f 1 1 1 f . . . . 
-        . . . f 1 1 1 1 1 1 1 f . . . . 
-        . . . . . 1 1 f 1 1 . . . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . . f f 5 5 5 5 5 f f . . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        . . f f f . . . . . . . . f f f 
+        . f f c c . . . . . . f c b b c 
+        f f c c . . . . . . f c b b c . 
+        f c f c . . . . . . f b c c c . 
+        f f f c c . c c . f c b b c c . 
+        f f c 3 c c 3 c c f b c b b c . 
+        f f b 3 b c 3 b c f b c c b c . 
+        . c b b b b b b c b b c c c . . 
+        . c 1 b b b 1 b b c c c c . . . 
+        c b b b b b b b b b c c . . . . 
+        c b c b b b c b b b b f . . . . 
+        f b 1 f f f 1 b b b b f c . . . 
+        f b b b b b b b b b b f c c . . 
+        . f b b b b b b b b c f . . . . 
+        . . f b b b b b b c f . . . . . 
+        . . . f f f f f f f . . . . . . 
         `, SpriteKind.Enemy)
     animation.runImageAnimation(
     bee,
-    [img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . f 1 1 1 f 1 1 1 f . . . . 
-        . . . f 1 1 1 1 1 1 1 f . . . . 
-        . . . . . 1 1 f 1 1 . . . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . . f f 5 5 5 5 5 f f . . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `,img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . . f f 5 5 5 5 5 f f . . . . 
-        . . . f 5 5 5 5 5 5 5 f . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `],
+    assets.animation`myAnim`,
     100,
     true
     )
-    bee.setPosition(demon.x - 80, demon.y - 80)
-    bee.follow(demon)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
+    bee.setPosition(knight.x + 100, knight.y - 40)
+    bee.follow(knight, 70)
 })
 let bee: Sprite = null
+let jump_count = 0
 let abrusto: Sprite = null
-let demon: Sprite = null
+let knight: Sprite = null
 scene.setBackgroundColor(9)
-demon = sprites.create(assets.image`LilDemon`, SpriteKind.Player)
-scene.cameraFollowSprite(demon)
-controller.moveSprite(demon, 100, 0)
-tiles.setCurrentTilemap(tilemap`level3`)
-demon.ay = 500
+knight = sprites.create(assets.image`LilDemon`, SpriteKind.Player)
+info.setLife(3)
+info.setScore(0)
+scene.cameraFollowSprite(knight)
+controller.moveSprite(knight, 100, 0)
+tiles.setCurrentTilemap(tilemap`level0`)
+knight.ay = 500
 for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
     abrusto = sprites.create(img`
         . . . . . f f f f f f . . . . . 
@@ -112,9 +89,14 @@ for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
     tiles.setTileAt(value, assets.tile`transparency16`)
 }
 game.onUpdate(function () {
-    demon.setImage(assets.image`LilDemon`)
-    if (demon.vy < 0) {
-        demon.setImage(img`
+    if (knight.isHittingTile(CollisionDirection.Bottom)) {
+        jump_count = 0
+    }
+    if (knight.vx != 0) {
+        knight.setImage(assets.image`LilDemon`)
+    }
+    if (knight.vy < 0) {
+        knight.setImage(img`
             ................
             .fffffff........
             ff22222ff.......
@@ -136,8 +118,8 @@ game.onUpdate(function () {
             .f4444fffbff....
             .ffffff.fff.....
             `)
-    } else if (demon.vy > 0) {
-        demon.setImage(img`
+    } else if (knight.vy > 0) {
+        knight.setImage(img`
             . . . . . . . . . . . . . . . . 
             f f f . . . . . . . . . . . . . 
             f 2 f f f f f f . . . . . . . . 
@@ -157,8 +139,8 @@ game.onUpdate(function () {
             f 4 4 4 4 4 f b b b f 4 f . . . 
             f f f f f f f f f f f f f . . . 
             `)
-    } else if (demon.x % 2 == 0) {
-        demon.setImage(img`
+    } else if (knight.x % 2 == 0) {
+        knight.setImage(img`
             ................
             ................
             ..fffffff.......
@@ -181,7 +163,7 @@ game.onUpdate(function () {
             ..fff...........
             `)
     }
-    if (demon.vx < 0) {
-        demon.image.flipX()
+    if (knight.vx < 0) {
+        knight.image.flipX()
     }
 })
