@@ -59,7 +59,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Abrusto, function (sprite, other
     bat.follow(knight, 70)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.wrongPathSign, function (sprite, otherSprite) {
-    otherSprite.sayText("This does not look to be the correct path", 100, false)
+    otherSprite.sayText("This does not look to be the correct path", 200, false)
 })
 let bat: Sprite = null
 let jump_count = 0
@@ -72,6 +72,7 @@ info.setLife(3)
 info.setScore(0)
 scene.cameraFollowSprite(knight)
 controller.moveSprite(knight, 100, 0)
+music.setTempo(120)
 tiles.setCurrentTilemap(tilemap`level0`)
 knight.ay = 500
 for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {

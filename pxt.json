@@ -6,7 +6,9 @@
         "device": "*",
         "animation": "*",
         "darts": "*",
-        "radio-broadcast": "*"
+        "radio-broadcast": "*",
+        "corgio": "*",
+        "carnival": "github:microsoft/arcade-carnival#v0.0.7"
     },
     "files": [
         "README.md",
