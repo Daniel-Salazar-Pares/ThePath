@@ -27,7 +27,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite4, otherS
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Abrusto, function (sprite, otherSprite) {
     sprites.destroy(otherSprite)
-    bee = sprites.create(img`
+    bat = sprites.create(img`
         . . f f f . . . . . . . . f f f 
         . f f c c . . . . . . f c b b c 
         f f c c . . . . . . f c b b c . 
@@ -46,15 +46,15 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Abrusto, function (sprite, other
         . . . f f f f f f f . . . . . . 
         `, SpriteKind.Enemy)
     animation.runImageAnimation(
-    bee,
+    bat,
     assets.animation`myAnim`,
     100,
     true
     )
-    bee.setPosition(knight.x + 100, knight.y - 40)
-    bee.follow(knight, 70)
+    bat.setPosition(knight.x + 100, knight.y - 40)
+    bat.follow(knight, 70)
 })
-let bee: Sprite = null
+let bat: Sprite = null
 let jump_count = 0
 let abrusto: Sprite = null
 let knight: Sprite = null
