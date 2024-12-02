@@ -1,7 +1,11 @@
+enum RadioMessage {
+    message1 = 49434
+}
 namespace SpriteKind {
     export const Abrusto = SpriteKind.create()
     export const slime = SpriteKind.create()
     export const slimespawn = SpriteKind.create()
+    export const wrongPathSign = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite3, location) {
     game.gameOver(true)
@@ -54,8 +58,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Abrusto, function (sprite, other
     bat.setPosition(knight.x + 100, knight.y - 40)
     bat.follow(knight, 70)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.wrongPathSign, function (sprite, otherSprite) {
+    otherSprite.sayText("This does not look to be the correct path", 100, false)
+})
 let bat: Sprite = null
 let jump_count = 0
+let singal: Sprite = null
 let abrusto: Sprite = null
 let knight: Sprite = null
 scene.setBackgroundColor(9)
@@ -86,6 +94,28 @@ for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
         . . f f f f f f f f f f f f . . 
         `, SpriteKind.Abrusto)
     tiles.placeOnTile(abrusto, value)
+    tiles.setTileAt(value, assets.tile`transparency16`)
+}
+for (let value of tiles.getTilesByType(assets.tile`myTile23`)) {
+    singal = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . f f f f f f f f f . 
+        . f f f f f d d d d d d d d f . 
+        . f d d d d e f f e e e d d f . 
+        . f d d e e f d d f e e e d f . 
+        . f d e e e f d d f e e e d f . 
+        . f d e e e e f f e e e e e f . 
+        . f e e e e f d d f e e e e f . 
+        . f e e e e e f f e e e e e f . 
+        . f e e e e f e e f f f f f . . 
+        . . f f f f f e e f . . . . . . 
+        . . . . . . f e e e f . . . . . 
+        . . . . . . . f e e f . . . . . 
+        . . . . . . . f e e f . . . . . 
+        . . . . . . . f e e f . . . . . 
+        `, SpriteKind.wrongPathSign)
+    tiles.placeOnTile(singal, value)
     tiles.setTileAt(value, assets.tile`transparency16`)
 }
 game.onUpdate(function () {
