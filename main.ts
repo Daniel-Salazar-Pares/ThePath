@@ -6,6 +6,7 @@ namespace SpriteKind {
     export const slime = SpriteKind.create()
     export const slimespawn = SpriteKind.create()
     export const wrongPathSign = SpriteKind.create()
+    export const Breakableblock = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite3, location) {
     game.gameOver(true)
@@ -63,6 +64,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.wrongPathSign, function (sprite,
 })
 let bat: Sprite = null
 let jump_count = 0
+let brekableStone: Sprite = null
 let singal: Sprite = null
 let abrusto: Sprite = null
 let knight: Sprite = null
@@ -117,6 +119,28 @@ for (let value of tiles.getTilesByType(assets.tile`myTile23`)) {
         . . . . . . . f e e f . . . . . 
         `, SpriteKind.wrongPathSign)
     tiles.placeOnTile(singal, value)
+    tiles.setTileAt(value, assets.tile`transparency16`)
+}
+for (let value of tiles.getTilesByType(assets.tile`purpleSpawn`)) {
+    brekableStone = sprites.create(img`
+        . . f f f f f f f f f f f f . . 
+        . f d d d d d d d d d d d d f . 
+        f d d d c d d d c c c c d d d f 
+        f d d c c d d d c c c c c d d f 
+        f d c c c d d d c d d c c c d f 
+        f d c d c c c c c d d c c c d f 
+        f d c c c c c c c c c c c c d f 
+        f d c c c c c c c c c c d c d f 
+        f c c c c c c d d c c c c c c f 
+        f c c c c c c d d c c c c c c f 
+        f c c c c c c c c c c c c c c f 
+        f c c c c c c c c c c c c c c f 
+        f c c c c c c c c c c c c c c f 
+        f c c c c c c c c c c c c c c f 
+        . f c c c c c c c c c c c c f . 
+        . . f f f f f f f f f f f f . . 
+        `, SpriteKind.Breakableblock)
+    tiles.placeOnTile(brekableStone, value)
     tiles.setTileAt(value, assets.tile`transparency16`)
 }
 game.onUpdate(function () {
