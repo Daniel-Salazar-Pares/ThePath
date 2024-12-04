@@ -1,12 +1,11 @@
-enum RadioMessage {
-    message1 = 49434
-}
 namespace SpriteKind {
     export const Abrusto = SpriteKind.create()
     export const slime = SpriteKind.create()
     export const slimespawn = SpriteKind.create()
-    export const wrongPathSign = SpriteKind.create()
-    export const Breakableblock = SpriteKind.create()
+    export const Coin = SpriteKind.create()
+    export const Monstrup = SpriteKind.create()
+    export const Monstruo = SpriteKind.create()
+    export const EnemyBounce = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite3, location) {
     game.gameOver(true)
@@ -18,28 +17,113 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         jump_count += 1
     }
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Breakableblock, function (sprite, otherSprite) {
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite, otherSprite) {
+    info.changeScoreBy(1)
     sprites.destroy(otherSprite)
-    music.play(music.createSoundEffect(WaveShape.Noise, 821, 0, 117, 0, 200, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite2, location2) {
     game.gameOver(false)
     game.setGameOverEffect(false, effects.melt)
 })
+function BouncingEnemies () {
+    for (let value2 of tiles.getTilesByType(assets.tile`bee`)) {
+        monstruo = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . f f f f f f f f f f . . . . 
+            . . f 1 1 1 7 7 7 7 7 f . . . . 
+            . . f 1 5 5 5 5 5 5 7 f . . . . 
+            . . f 7 5 f f 5 5 5 f f . . . . 
+            . . f 7 5 f f 5 5 5 f f . . . . 
+            . . f 7 5 5 5 5 5 5 7 f . . . . 
+            . . f 7 f 5 f 5 f 5 f f . . . . 
+            . f f f f 5 f f f 5 f f f . . . 
+            f f 7 f f f f 5 f f f 7 f f . . 
+            f 7 7 5 f 5 f 5 f 5 f 7 7 f . . 
+            f 7 7 7 7 7 7 7 7 7 7 7 7 f . . 
+            f f f f f f f f f f f f f f . . 
+            `, SpriteKind.Monstruo)
+        animation.runImageAnimation(
+        monstruo,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . f f f f f f f f f f . . . . 
+            . . f 1 1 1 7 7 7 7 7 f . . . . 
+            . . f 1 5 5 5 5 5 5 7 f . . . . 
+            . . f 7 5 f f 5 5 5 f f . . . . 
+            . . f 7 5 f f 5 5 5 f f . . . . 
+            . . f 7 5 5 5 5 5 5 7 f . . . . 
+            . . f 7 f 5 f 5 f 5 f f . . . . 
+            . f f f f 5 f f f 5 f f f . . . 
+            f f 7 f f f f 5 f f f 7 f f . . 
+            f 7 7 5 f 5 f 5 f 5 f 7 7 f . . 
+            f 7 7 7 7 7 7 7 7 7 7 7 7 f . . 
+            f f f f f f f f f f f f f f . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . f f f f f f f f f f . . . . 
+            . . f 1 1 1 7 7 7 7 7 f . . . . 
+            . . f 1 5 5 5 5 5 5 7 f . . . . 
+            . . f 7 5 f f 5 5 5 f f . . . . 
+            . . f 7 5 f f 5 5 5 f f . . . . 
+            . . f 7 5 5 5 5 5 5 7 f . . . . 
+            . . f 7 f 5 f 5 f 5 f f . . . . 
+            . . f f f 5 f f f 5 f f . . . . 
+            . . . f f f f f f f f . . . . . 
+            . . f f f f f f f f f f . . . . 
+            . f f f f f f f f f f f f . . . 
+            f f 7 f f f f 5 f f f 7 f f . . 
+            f 7 7 5 f 5 f 5 f 5 f 7 7 f . . 
+            f 7 7 7 7 7 7 7 7 7 7 7 7 f . . 
+            f f f f f f f f f f f f f f . . 
+            `],
+        100,
+        true
+        )
+        tiles.placeOnTile(monstruo, value2)
+        tiles.setTileAt(value2, assets.tile`transparency16`)
+        monstruo.vx = -50
+    }
+    for (let value2 of tiles.getTilesByType(assets.tile`myTile23`)) {
+        EnemyBouncePad = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . 3 3 . 
+            . . f f f f f f f f f 3 3 3 3 . 
+            . . f 3 1 1 7 3 3 3 3 f 3 . 3 . 
+            . . f 3 3 3 3 3 3 3 7 3 . . 3 . 
+            . . f 7 5 3 3 3 5 5 3 f . 3 . . 
+            . . f 7 3 3 3 3 5 3 f f . 3 . . 
+            . . f 3 3 5 5 3 5 3 7 f 3 . . . 
+            . . 3 7 3 5 f 3 3 5 f 3 . . . . 
+            . 3 3 3 f 3 3 f 3 5 f 3 f . . . 
+            3 3 7 f 3 f f 5 3 f 3 7 f f . . 
+            3 3 3 3 f 5 f 5 3 3 f 7 7 f . . 
+            f 7 7 7 7 7 7 7 3 7 7 7 7 f . . 
+            f f f f f f f f 3 f f f f f . . 
+            `, SpriteKind.EnemyBounce)
+        tiles.placeOnTile(EnemyBouncePad, value2)
+        tiles.setTileAt(value2, assets.tile`transparency16`)
+        EnemyBouncePad.setFlag(SpriteFlag.Invisible, true)
+    }
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite4, otherSprite2) {
     sprites.destroy(otherSprite2)
     if (knight.y + 5 < otherSprite2.y) {
-        music.play(music.createSoundEffect(WaveShape.Noise, 1, 241, 232, 206, 230, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
         info.changeScoreBy(1)
     } else {
-        music.play(music.createSoundEffect(WaveShape.Triangle, 286, 107, 255, 157, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
         info.changeLifeBy(-1)
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Abrusto, function (sprite, otherSprite) {
     sprites.destroy(otherSprite)
-    music.play(music.createSoundEffect(WaveShape.Noise, 494, 3, 133, 106, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
-    bat = sprites.create(img`
+    bee = sprites.create(img`
         . . f f f . . . . . . . . f f f 
         . f f c c . . . . . . f c b b c 
         f f c c . . . . . . f c b b c . 
@@ -58,25 +142,30 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Abrusto, function (sprite, other
         . . . f f f f f f f . . . . . . 
         `, SpriteKind.Enemy)
     animation.runImageAnimation(
-    bat,
+    bee,
     assets.animation`myAnim`,
     100,
     true
     )
-    bat.setPosition(knight.x + 100, knight.y - 40)
-    bat.follow(knight, 70)
+    bee.setPosition(knight.x + 100, knight.y - 40)
+    bee.follow(knight, 70)
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.wrongPathSign, function (sprite, otherSprite) {
-    otherSprite.sayText("This does not look to be the correct path", 200, false)
+sprites.onOverlap(SpriteKind.Monstruo, SpriteKind.EnemyBounce, function (sprite, otherSprite) {
+    sprite.vx = sprite.vx * -1
 })
-info.onLifeZero(function () {
-    game.gameOver(false)
-    game.setGameOverEffect(false, effects.melt)
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Monstruo, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite)
+    if (knight.y + 5 < otherSprite.y) {
+        info.changeScoreBy(1)
+    } else {
+        info.changeLifeBy(-1)
+    }
 })
-let bat: Sprite = null
+let bee: Sprite = null
+let EnemyBouncePad: Sprite = null
+let monstruo: Sprite = null
 let jump_count = 0
-let brekableStone: Sprite = null
-let singal: Sprite = null
+let coin: Sprite = null
 let abrusto: Sprite = null
 let knight: Sprite = null
 scene.setBackgroundColor(9)
@@ -85,8 +174,6 @@ info.setLife(3)
 info.setScore(0)
 scene.cameraFollowSprite(knight)
 controller.moveSprite(knight, 100, 0)
-music.setTempo(120)
-music.play(music.createSong(hex`0078000408040200001c00010a006400f401640000040000000000000000000000000005000004b40000000400012504000800012508000c0001240c001000012210001400012214001800012018001c00011e1c002000011e24002800012228002c00011d2c003000012230003400012534003800012938003c0001273c004000012540004400012044004800012048004c0001274c005000012250005400011e58005c00011e5c006000012260006400012264006800011e68006c00011d6c007000011b70007400011b74007800011d78007c0001247c008000012706001c00010a006400f4016400000400000000000000000000000000000000026800000004000312141608000c00031214160c00100003121416140018000312141618001c000312141624002800031214162c0030000312141638003c0003121416400044000312141644004800031214164c00500003121416540058000312141658005c0003121416`), music.PlaybackMode.LoopingInBackground)
 tiles.setCurrentTilemap(tilemap`level0`)
 knight.ay = 500
 for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
@@ -111,102 +198,109 @@ for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
     tiles.placeOnTile(abrusto, value)
     tiles.setTileAt(value, assets.tile`transparency16`)
 }
-for (let value of tiles.getTilesByType(assets.tile`myTile23`)) {
-    singal = sprites.create(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . f f f f f f f f f . 
-        . f f f f f d d d d d d d d f . 
-        . f d d d d e f f e e e d d f . 
-        . f d d e e f d d f e e e d f . 
-        . f d e e e f d d f e e e d f . 
-        . f d e e e e f f e e e e e f . 
-        . f e e e e f d d f e e e e f . 
-        . f e e e e e f f e e e e e f . 
-        . f e e e e f e e f f f f f . . 
-        . . f f f f f e e f . . . . . . 
-        . . . . . . f e e e f . . . . . 
-        . . . . . . . f e e f . . . . . 
-        . . . . . . . f e e f . . . . . 
-        . . . . . . . f e e f . . . . . 
-        `, SpriteKind.wrongPathSign)
-    tiles.placeOnTile(singal, value)
-    tiles.setTileAt(value, assets.tile`transparency16`)
+for (let value2 of tiles.getTilesByType(sprites.swamp.swampTile16)) {
+    coin = sprites.create(img`
+        . . . . . f f f f f f . . . . . 
+        . . . f f f 5 5 5 5 f f f . . . 
+        . . f f 5 5 4 4 4 4 1 1 f f . . 
+        . f f 5 4 4 4 4 4 1 1 4 1 f f . 
+        . f 5 4 4 4 4 5 1 1 4 1 4 4 f . 
+        . f 5 4 4 4 5 1 1 4 1 4 4 4 f . 
+        . f 5 4 4 5 1 1 4 1 4 4 4 4 f . 
+        . f 5 4 4 1 1 4 1 4 4 4 4 4 f . 
+        . f 5 4 1 1 5 1 4 4 4 4 4 4 f . 
+        . f 5 1 1 4 1 4 4 4 4 4 4 4 f . 
+        . f 1 1 4 1 5 4 4 4 4 4 4 4 f . 
+        . f 1 4 1 4 4 4 4 4 4 4 4 4 f . 
+        . . f 1 4 4 4 4 4 4 4 4 4 f . . 
+        . . . f 5 5 4 4 4 4 4 4 f . . . 
+        . . . . f f 4 4 4 4 f f . . . . 
+        . . . . . . f f f f . . . . . . 
+        `, SpriteKind.Coin)
+    animation.runImageAnimation(
+    coin,
+    [img`
+        . . . . . . f f f f . . . . . . 
+        . . . . f f 5 5 5 5 f f . . . . 
+        . . . f 5 5 4 4 4 4 1 1 f . . . 
+        . . f 5 4 4 4 4 4 1 1 4 1 f . . 
+        . f 5 4 4 4 4 5 1 1 4 1 4 4 f . 
+        . f 5 4 4 4 5 1 1 4 1 4 4 4 f . 
+        . f 5 4 4 5 1 1 4 1 4 4 4 4 f . 
+        . f 5 4 4 1 1 4 1 4 4 4 4 4 f . 
+        . f 5 4 1 1 5 1 4 4 4 4 4 4 f . 
+        . f 5 1 1 4 1 4 4 4 4 4 4 4 f . 
+        . f 1 1 4 1 5 4 4 4 4 4 4 4 f . 
+        . f 1 4 1 4 4 4 4 4 4 4 4 4 f . 
+        . . f 1 4 4 4 4 4 4 4 4 4 f . . 
+        . . . f 5 5 4 4 4 4 4 4 f . . . 
+        . . . . f f 4 4 4 4 f f . . . . 
+        . . . . . . f f f f . . . . . . 
+        `,img`
+        . . . . . . f f f f . . . . . . 
+        . . . . . f 1 1 5 1 f . . . . . 
+        . . . . f 1 1 4 1 4 4 f . . . . 
+        . . . . f 1 4 1 4 4 4 f . . . . 
+        . . . f 1 4 1 5 5 4 4 4 f . . . 
+        . . . f 5 1 4 5 4 4 4 4 f . . . 
+        . . . f 1 4 5 5 4 4 4 4 f . . . 
+        . . . f 5 4 4 5 4 4 4 4 f . . . 
+        . . . f 5 4 4 5 4 4 4 4 f . . . 
+        . . . f 5 4 4 5 4 4 4 4 f . . . 
+        . . . f 5 4 4 5 4 4 4 4 f . . . 
+        . . . f 5 4 4 4 4 4 4 4 f . . . 
+        . . . f 5 4 4 4 4 4 4 4 f . . . 
+        . . . . f 5 4 4 4 4 4 f . . . . 
+        . . . . . f 4 4 4 4 f . . . . . 
+        . . . . . . f f f f . . . . . . 
+        `,img`
+        . . . . . . . f f . . . . . . . 
+        . . . . . . f 5 5 f . . . . . . 
+        . . . . . . f 5 4 f . . . . . . 
+        . . . . . . f 5 4 f . . . . . . 
+        . . . . . f 5 4 4 4 f . . . . . 
+        . . . . . f 5 4 4 4 f . . . . . 
+        . . . . . f 5 4 4 4 f . . . . . 
+        . . . . . f 5 4 4 4 f . . . . . 
+        . . . . . f 5 4 4 4 f . . . . . 
+        . . . . . f 5 4 4 4 f . . . . . 
+        . . . . . f 5 4 4 4 f . . . . . 
+        . . . . . f 5 4 4 4 f . . . . . 
+        . . . . . . f 4 4 f . . . . . . 
+        . . . . . . f 4 4 f . . . . . . 
+        . . . . . . f 4 4 f . . . . . . 
+        . . . . . . . f f . . . . . . . 
+        `,img`
+        . . . . . . f f f f . . . . . . 
+        . . . . . f 5 5 5 5 f . . . . . 
+        . . . . f 5 4 4 4 4 4 f . . . . 
+        . . . . f 5 4 4 4 4 4 f . . . . 
+        . . . f 5 4 4 5 5 4 4 4 f . . . 
+        . . . f 5 4 4 5 4 4 4 4 f . . . 
+        . . . f 5 4 5 5 4 4 4 4 f . . . 
+        . . . f 5 4 4 5 4 4 4 4 f . . . 
+        . . . f 5 4 4 5 4 4 4 4 f . . . 
+        . . . f 5 4 4 5 4 4 4 1 f . . . 
+        . . . f 5 4 4 5 4 4 1 1 f . . . 
+        . . . f 5 4 4 4 4 1 1 4 f . . . 
+        . . . f 5 4 4 4 1 1 4 1 f . . . 
+        . . . . f 5 4 1 1 4 1 f . . . . 
+        . . . . . f 1 1 4 1 f . . . . . 
+        . . . . . . f f f f . . . . . . 
+        `],
+    200,
+    true
+    )
+    tiles.placeOnTile(coin, value2)
+    tiles.setTileAt(value2, assets.tile`transparency16`)
 }
-for (let value of tiles.getTilesByType(assets.tile`purpleSpawn`)) {
-    brekableStone = sprites.create(img`
-        . . f f f f f f f f f f f f . . 
-        . f d d d d d d d d d d d d f . 
-        f d d d c d d d c c c c d d d f 
-        f d d c c d d d c c c c c d d f 
-        f d c c c d d d c d d c c c d f 
-        f d c d c c c c c d d c c c d f 
-        f d c c c c c c c c c c c c d f 
-        f d c c c c c c c c c c d c d f 
-        f c c c c c c d d c c c c c c f 
-        f c c c c c c d d c c c c c c f 
-        f c c c c c c c c c c c c c c f 
-        f c c c c c c c c c c c c c c f 
-        f c c c c c c c c c c c c c c f 
-        f c c c c c c c c c c c c c c f 
-        . f c c c c c c c c c c c c f . 
-        . . f f f f f f f f f f f f . . 
-        `, SpriteKind.Breakableblock)
-    tiles.placeOnTile(brekableStone, value)
-    tiles.setTileAt(value, assets.tile`transparency16`)
-}
+BouncingEnemies()
 game.onUpdate(function () {
+    knight.setImage(assets.image`LilDemon`)
     if (knight.isHittingTile(CollisionDirection.Bottom)) {
         jump_count = 0
     }
-    if (knight.vx != 0) {
-        knight.setImage(assets.image`LilDemon`)
-    }
     if (knight.vy < 0) {
-        knight.setImage(img`
-            ................
-            .fffffff........
-            ff22222ff.......
-            f2ff2222f.......
-            fffff22fffff....
-            ..fdddbbbbbf....
-            ..fdfffffffff...
-            ..fbfdddbbbbf...
-            ..fbfdfbfbfbf...
-            ..fbfbfbfbfbf...
-            ..fbfbfbfbfbf...
-            ..fbfbbbbbbbf...
-            .ffffffffffff...
-            .fccc444444f....
-            .fccc4ffffff....
-            .fccc4fbbbbf....
-            .fccc4fbbbbf....
-            .fccc4fffbbf....
-            .f4444fffbff....
-            .ffffff.fff.....
-            `)
-    } else if (knight.vy > 0) {
-        knight.setImage(img`
-            . . . . . . . . . . . . . . . . 
-            f f f . . . . . . . . . . . . . 
-            f 2 f f f f f f . . . . . . . . 
-            f f 2 2 2 2 2 f f . . . . . . . 
-            . f f f 2 2 2 2 f . . . . . . . 
-            . . f f f 2 2 f f f f f . . . . 
-            . . f d d d b b b b b f . . . . 
-            . . f d f f f f f f f f f . . . 
-            . . f b f d d d b b b b f . . . 
-            . . f b f d f b f b f b f . . . 
-            . . f b f b f b f b f b f . . . 
-            . . f b f b f b f b f b f . . . 
-            . . f b f b b b b b b b f . . . 
-            . f f f f f f f f f f f f . . . 
-            . f c c c 4 4 4 4 4 4 f . . . . 
-            f f c c c 4 f f f f f f f . . . 
-            f 4 4 4 4 4 f b b b f 4 f . . . 
-            f f f f f f f f f f f f f . . . 
-            `)
-    } else if (knight.x % 2 == 0) {
         knight.setImage(img`
             ................
             ................
@@ -229,6 +323,31 @@ game.onUpdate(function () {
             ffffffffffffff..
             ..fff...........
             `)
+    } else if (knight.vy > 0) {
+        knight.setImage(img`
+            ................
+            ................
+            fff.............
+            f2ffffff........
+            ff22222ff.......
+            .fff2222f.......
+            ..fff22fffff....
+            ..fdddbbbbbf....
+            ..fdfffffffff...
+            ..fbfdddbbbbf...
+            ..fbfdfbfbfbf...
+            ..fbfbfbfbfbf...
+            ..fbfbfbfbfbf...
+            ..fbfbbbbbbbf...
+            .ffffffffffff...
+            .fccc444444f....
+            ffccc4fffffff...
+            f44444fbbbf4f...
+            fffffffffffff...
+            ................
+            `)
+    } else {
+    	
     }
     if (knight.vx < 0) {
         knight.image.flipX()
