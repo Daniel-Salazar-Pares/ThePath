@@ -26,6 +26,19 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, fu
     game.gameOver(false)
     game.setGameOverEffect(false, effects.melt)
 })
+spriteutils.onSpriteKindUpdateInterval(SpriteKind.Enemy, 200, function (sprite) {
+    if (sprite.x < knight.x) {
+        if (isFlipped != 1) {
+            sprite.image.flipX()
+            isFlipped = 1
+        }
+    } else {
+        if (isFlipped == 0) {
+            sprite.image.flipX()
+            isFlipped = 1
+        }
+    }
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite4, otherSprite2) {
     sprites.destroy(otherSprite2)
     if (knight.y + 5 < otherSprite2.y) {
@@ -63,7 +76,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Abrusto, function (sprite, other
     100,
     true
     )
-    bat.setPosition(knight.x + 100, knight.y - 40)
+    bat.setPosition(isFlipped.x + 100, knight.y - 40)
     bat.follow(knight, 70)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.wrongPathSign, function (sprite, otherSprite) {
@@ -74,6 +87,7 @@ info.onLifeZero(function () {
     game.setGameOverEffect(false, effects.melt)
 })
 let bat: Sprite = null
+let isFlipped = 0
 let jump_count = 0
 let brekableStone: Sprite = null
 let singal: Sprite = null
@@ -86,6 +100,7 @@ info.setScore(0)
 scene.cameraFollowSprite(knight)
 controller.moveSprite(knight, 100, 0)
 music.setTempo(120)
+music.play(music.createSong(hex`0078000408040300001c00010a006400f401640000040000000000000000000000000005000004b40000000400012504000800012508000c0001240c001000012210001400012214001800012018001c00011e1c002000011e24002800012228002c00011d2c003000012230003400012534003800012938003c0001273c004000012540004400012044004800012048004c0001274c005000012250005400011e58005c00011e5c006000012260006400012264006800011e68006c00011d6c007000011b70007400011b74007800011d78007c0001247c008000012705001c000f0a006400f4010a00000400000000000000000000000000000000021e0020002400011430003400010f3c004000010f40004400010c4c005000010c06001c00010a006400f4016400000400000000000000000000000000000000026800000004000312141608000c00031214160c00100003121416140018000312141618001c000312141624002800031214162c0030000312141638003c0003121416400044000312141644004800031214164c00500003121416540058000312141658005c0003121416`), music.PlaybackMode.UntilDone)
 tiles.setCurrentTilemap(tilemap`level0`)
 knight.ay = 500
 for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
