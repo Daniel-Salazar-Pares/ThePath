@@ -18,20 +18,50 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         jump_count += 1
     }
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Breakableblock, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite)
+    music.play(music.createSoundEffect(WaveShape.Noise, 821, 0, 117, 0, 200, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite2, location2) {
     game.gameOver(false)
     game.setGameOverEffect(false, effects.melt)
 })
+spriteutils.onSpriteKindUpdateInterval(SpriteKind.Enemy, 200, function (sprite) {
+    sprite.setImage(img`
+        . . f f f . . . . . . . . f f f 
+        . f f c c . . . . . . f c b b c 
+        f f c c . . . . . . f c b b c . 
+        f c f c . . . . . . f b c c c . 
+        f f f c c . c c . f c b b c c . 
+        f f c 3 c c 3 c c f b c b b c . 
+        f f b 3 b c 3 b c f b c c b c . 
+        . c b b b b b b c b b c c c . . 
+        . c 1 b b b 1 b b c c c c . . . 
+        c b b b b b b b b b c c . . . . 
+        c b c b b b c b b b b f . . . . 
+        f b 1 f f f 1 b b b b f c . . . 
+        f b b b b b b b b b b f c c . . 
+        . f b b b b b b b b c f . . . . 
+        . . f b b b b b b c f . . . . . 
+        . . . f f f f f f f . . . . . . 
+        `)
+    if (sprite.x < knight.x) {
+        sprite.image.flipX()
+    }
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite4, otherSprite2) {
     sprites.destroy(otherSprite2)
     if (knight.y + 5 < otherSprite2.y) {
+        music.play(music.createSoundEffect(WaveShape.Noise, 1, 241, 232, 206, 230, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
         info.changeScoreBy(1)
     } else {
+        music.play(music.createSoundEffect(WaveShape.Triangle, 286, 107, 255, 157, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
         info.changeLifeBy(-1)
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Abrusto, function (sprite, otherSprite) {
     sprites.destroy(otherSprite)
+    music.play(music.createSoundEffect(WaveShape.Noise, 494, 3, 133, 106, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
     bat = sprites.create(img`
         . . f f f . . . . . . . . f f f 
         . f f c c . . . . . . f c b b c 
@@ -61,6 +91,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Abrusto, function (sprite, other
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.wrongPathSign, function (sprite, otherSprite) {
     otherSprite.sayText("This does not look to be the correct path", 200, false)
+})
+info.onLifeZero(function () {
+    game.gameOver(false)
+    game.setGameOverEffect(false, effects.melt)
 })
 let bat: Sprite = null
 let jump_count = 0
