@@ -14,6 +14,10 @@ class SpriteKind:
     NPC5 = SpriteKind.create()
     NPC6 = SpriteKind.create()
     button = SpriteKind.create()
+    boss = SpriteKind.create()
+    Boss1 = SpriteKind.create()
+    Espada = SpriteKind.create()
+    crosshair = SpriteKind.create()
 
 def on_on_overlap(sprite7, otherSprite5):
     global bee
@@ -45,8 +49,7 @@ def on_on_overlap(sprite7, otherSprite5):
 sprites.on_overlap(SpriteKind.player, SpriteKind.Abrusto, on_on_overlap)
 
 def on_overlap_tile(sprite3, location):
-    game.game_over(True)
-    game.set_game_over_effect(True, effects.confetti)
+    level_2()
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.collectible_blue_crystal,
     on_overlap_tile)
@@ -232,137 +235,7 @@ def otpions():
     livesChange.set_position(41, 85)
     backToMenu.set_position(18, 14)
 
-def on_on_overlap2(sprite, otherSprite):
-    info.change_score_by(1)
-    sprites.destroy(otherSprite)
-sprites.on_overlap(SpriteKind.player, SpriteKind.Coin, on_on_overlap2)
-
-def on_on_overlap3(sprite8, otherSprite6):
-    sprite8.vx = sprite8.vx * -1
-sprites.on_overlap(SpriteKind.Monstruo, SpriteKind.EnemyBounce, on_on_overlap3)
-
-def on_overlap_tile2(sprite2, location2):
-    game.game_over(False)
-    game.set_game_over_effect(False, effects.melt)
-scene.on_overlap_tile(SpriteKind.player,
-    sprites.dungeon.collectible_red_crystal,
-    on_overlap_tile2)
-
-def BouncingEnemies():
-    global monstruo, EnemyBouncePad
-    for value2 in tiles.get_tiles_by_type(assets.tile("""
-        bee
-    """)):
-        monstruo = sprites.create(img("""
-                . . . . . . . . . . . . . . . . 
-                            . . . . . . . . . . . . . . . . 
-                            . . . . . . . . . . . . . . . . 
-                            . . . . . . . . . . . . . . . . 
-                            . . f f f f f f f f f f . . . . 
-                            . . f 1 1 1 7 7 7 7 7 f . . . . 
-                            . . f 1 5 5 5 5 5 5 7 f . . . . 
-                            . . f 7 5 f f 5 5 5 f f . . . . 
-                            . . f 7 5 f f 5 5 5 f f . . . . 
-                            . . f 7 5 5 5 5 5 5 7 f . . . . 
-                            . . f 7 f 5 f 5 f 5 f f . . . . 
-                            . f f f f 5 f f f 5 f f f . . . 
-                            f f 7 f f f f 5 f f f 7 f f . . 
-                            f 7 7 5 f 5 f 5 f 5 f 7 7 f . . 
-                            f 7 7 7 7 7 7 7 7 7 7 7 7 f . . 
-                            f f f f f f f f f f f f f f . .
-            """),
-            SpriteKind.Monstruo)
-        animation.run_image_animation(monstruo,
-            [img("""
-                    . . . . . . . . . . . . . . . . 
-                                . . . . . . . . . . . . . . . . 
-                                . . . . . . . . . . . . . . . . 
-                                . . . . . . . . . . . . . . . . 
-                                . . f f f f f f f f f f . . . . 
-                                . . f 1 1 1 7 7 7 7 7 f . . . . 
-                                . . f 1 5 5 5 5 5 5 7 f . . . . 
-                                . . f 7 5 f f 5 5 5 f f . . . . 
-                                . . f 7 5 f f 5 5 5 f f . . . . 
-                                . . f 7 5 5 5 5 5 5 7 f . . . . 
-                                . . f 7 f 5 f 5 f 5 f f . . . . 
-                                . f f f f 5 f f f 5 f f f . . . 
-                                f f 7 f f f f 5 f f f 7 f f . . 
-                                f 7 7 5 f 5 f 5 f 5 f 7 7 f . . 
-                                f 7 7 7 7 7 7 7 7 7 7 7 7 f . . 
-                                f f f f f f f f f f f f f f . .
-                """),
-                img("""
-                    . . . . . . . . . . . . . . . . 
-                                . . f f f f f f f f f f . . . . 
-                                . . f 1 1 1 7 7 7 7 7 f . . . . 
-                                . . f 1 5 5 5 5 5 5 7 f . . . . 
-                                . . f 7 5 f f 5 5 5 f f . . . . 
-                                . . f 7 5 f f 5 5 5 f f . . . . 
-                                . . f 7 5 5 5 5 5 5 7 f . . . . 
-                                . . f 7 f 5 f 5 f 5 f f . . . . 
-                                . . f f f 5 f f f 5 f f . . . . 
-                                . . . f f f f f f f f . . . . . 
-                                . . f f f f f f f f f f . . . . 
-                                . f f f f f f f f f f f f . . . 
-                                f f 7 f f f f 5 f f f 7 f f . . 
-                                f 7 7 5 f 5 f 5 f 5 f 7 7 f . . 
-                                f 7 7 7 7 7 7 7 7 7 7 7 7 f . . 
-                                f f f f f f f f f f f f f f . .
-                """)],
-            100,
-            True)
-        tiles.place_on_tile(monstruo, value2)
-        tiles.set_tile_at(value2, assets.tile("""
-            transparency16
-        """))
-        monstruo.vx = -50
-    for value22 in tiles.get_tiles_by_type(assets.tile("""
-        myTile23
-    """)):
-        EnemyBouncePad = sprites.create(img("""
-                . . . . . . . . . . . . . . . . 
-                            . . . . . . . . . . . . . . . . 
-                            . . . . . . . . . . . . . . . . 
-                            . . . . . . . . . . . . . 3 3 . 
-                            . . f f f f f f f f f 3 3 3 3 . 
-                            . . f 3 1 1 7 3 3 3 3 f 3 . 3 . 
-                            . . f 3 3 3 3 3 3 3 7 3 . . 3 . 
-                            . . f 7 5 3 3 3 5 5 3 f . 3 . . 
-                            . . f 7 3 3 3 3 5 3 f f . 3 . . 
-                            . . f 3 3 5 5 3 5 3 7 f 3 . . . 
-                            . . 3 7 3 5 f 3 3 5 f 3 . . . . 
-                            . 3 3 3 f 3 3 f 3 5 f 3 f . . . 
-                            3 3 7 f 3 f f 5 3 f 3 7 f f . . 
-                            3 3 3 3 f 5 f 5 3 3 f 7 7 f . . 
-                            f 7 7 7 7 7 7 7 3 7 7 7 7 f . . 
-                            f f f f f f f f 3 f f f f f . .
-            """),
-            SpriteKind.EnemyBounce)
-        tiles.place_on_tile(EnemyBouncePad, value22)
-        tiles.set_tile_at(value22, assets.tile("""
-            transparency16
-        """))
-        EnemyBouncePad.set_flag(SpriteFlag.INVISIBLE, True)
-
-def on_on_overlap4(sprite42, otherSprite22):
-    sprites.destroy(otherSprite22)
-    if knight.y + 5 < otherSprite22.y:
-        info.change_score_by(1)
-    else:
-        info.change_life_by(-1)
-sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap4)
-
-def on_on_overlap5(sprite9, otherSprite7):
-    otherSprite7.say_text("Hi mighty knight, I see you lost your sword.", 200, False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC1, on_on_overlap5)
-
-def on_on_overlap6(sprite6, otherSprite4):
-    otherSprite4.say_text("I am the mage, the sword is somwhere in the second phase",
-        200,
-        False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC4, on_on_overlap6)
-
-def on_on_overlap7(sprite4, otherSprite2):
+def on_on_overlap2(sprite4, otherSprite2):
     global croshair, lives, Muted
     if otherSprite2 == Play:
         if controller.A.is_pressed():
@@ -480,7 +353,320 @@ def on_on_overlap7(sprite4, otherSprite2):
             main_menu()
     else:
         pass
-sprites.on_overlap(SpriteKind.crosshair, SpriteKind.button, on_on_overlap7)
+sprites.on_overlap(SpriteKind.crosshair, SpriteKind.button, on_on_overlap2)
+
+def on_on_overlap3(sprite, otherSprite):
+    info.change_score_by(1)
+    sprites.destroy(otherSprite)
+sprites.on_overlap(SpriteKind.player, SpriteKind.Coin, on_on_overlap3)
+
+def on_on_overlap4(sprite8, otherSprite6):
+    sprite8.vx = sprite8.vx * -1
+sprites.on_overlap(SpriteKind.Monstruo, SpriteKind.EnemyBounce, on_on_overlap4)
+
+def on_overlap_tile2(sprite2, location2):
+    game.game_over(False)
+    game.set_game_over_effect(False, effects.melt)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.collectible_red_crystal,
+    on_overlap_tile2)
+
+def BouncingEnemies():
+    global monstruo, EnemyBouncePad
+    for value2 in tiles.get_tiles_by_type(assets.tile("""
+        bee
+    """)):
+        monstruo = sprites.create(img("""
+                . . . . . . . . . . . . . . . . 
+                            . . . . . . . . . . . . . . . . 
+                            . . . . . . . . . . . . . . . . 
+                            . . . . . . . . . . . . . . . . 
+                            . . f f f f f f f f f f . . . . 
+                            . . f 1 1 1 7 7 7 7 7 f . . . . 
+                            . . f 1 5 5 5 5 5 5 7 f . . . . 
+                            . . f 7 5 f f 5 5 5 f f . . . . 
+                            . . f 7 5 f f 5 5 5 f f . . . . 
+                            . . f 7 5 5 5 5 5 5 7 f . . . . 
+                            . . f 7 f 5 f 5 f 5 f f . . . . 
+                            . f f f f 5 f f f 5 f f f . . . 
+                            f f 7 f f f f 5 f f f 7 f f . . 
+                            f 7 7 5 f 5 f 5 f 5 f 7 7 f . . 
+                            f 7 7 7 7 7 7 7 7 7 7 7 7 f . . 
+                            f f f f f f f f f f f f f f . .
+            """),
+            SpriteKind.Monstruo)
+        animation.run_image_animation(monstruo,
+            [img("""
+                    . . . . . . . . . . . . . . . . 
+                                . . . . . . . . . . . . . . . . 
+                                . . . . . . . . . . . . . . . . 
+                                . . . . . . . . . . . . . . . . 
+                                . . f f f f f f f f f f . . . . 
+                                . . f 1 1 1 7 7 7 7 7 f . . . . 
+                                . . f 1 5 5 5 5 5 5 7 f . . . . 
+                                . . f 7 5 f f 5 5 5 f f . . . . 
+                                . . f 7 5 f f 5 5 5 f f . . . . 
+                                . . f 7 5 5 5 5 5 5 7 f . . . . 
+                                . . f 7 f 5 f 5 f 5 f f . . . . 
+                                . f f f f 5 f f f 5 f f f . . . 
+                                f f 7 f f f f 5 f f f 7 f f . . 
+                                f 7 7 5 f 5 f 5 f 5 f 7 7 f . . 
+                                f 7 7 7 7 7 7 7 7 7 7 7 7 f . . 
+                                f f f f f f f f f f f f f f . .
+                """),
+                img("""
+                    . . . . . . . . . . . . . . . . 
+                                . . f f f f f f f f f f . . . . 
+                                . . f 1 1 1 7 7 7 7 7 f . . . . 
+                                . . f 1 5 5 5 5 5 5 7 f . . . . 
+                                . . f 7 5 f f 5 5 5 f f . . . . 
+                                . . f 7 5 f f 5 5 5 f f . . . . 
+                                . . f 7 5 5 5 5 5 5 7 f . . . . 
+                                . . f 7 f 5 f 5 f 5 f f . . . . 
+                                . . f f f 5 f f f 5 f f . . . . 
+                                . . . f f f f f f f f . . . . . 
+                                . . f f f f f f f f f f . . . . 
+                                . f f f f f f f f f f f f . . . 
+                                f f 7 f f f f 5 f f f 7 f f . . 
+                                f 7 7 5 f 5 f 5 f 5 f 7 7 f . . 
+                                f 7 7 7 7 7 7 7 7 7 7 7 7 f . . 
+                                f f f f f f f f f f f f f f . .
+                """)],
+            100,
+            True)
+        tiles.place_on_tile(monstruo, value2)
+        tiles.set_tile_at(value2, assets.tile("""
+            transparency16
+        """))
+        monstruo.vx = -50
+    for value22 in tiles.get_tiles_by_type(assets.tile("""
+        myTile23
+    """)):
+        EnemyBouncePad = sprites.create(img("""
+                . . . . . . . . . . . . . . . . 
+                            . . . . . . . . . . . . . . . . 
+                            . . . . . . . . . . . . . . . . 
+                            . . . . . . . . . . . . . 3 3 . 
+                            . . f f f f f f f f f 3 3 3 3 . 
+                            . . f 3 1 1 7 3 3 3 3 f 3 . 3 . 
+                            . . f 3 3 3 3 3 3 3 7 3 . . 3 . 
+                            . . f 7 5 3 3 3 5 5 3 f . 3 . . 
+                            . . f 7 3 3 3 3 5 3 f f . 3 . . 
+                            . . f 3 3 5 5 3 5 3 7 f 3 . . . 
+                            . . 3 7 3 5 f 3 3 5 f 3 . . . . 
+                            . 3 3 3 f 3 3 f 3 5 f 3 f . . . 
+                            3 3 7 f 3 f f 5 3 f 3 7 f f . . 
+                            3 3 3 3 f 5 f 5 3 3 f 7 7 f . . 
+                            f 7 7 7 7 7 7 7 3 7 7 7 7 f . . 
+                            f f f f f f f f 3 f f f f f . .
+            """),
+            SpriteKind.EnemyBounce)
+        tiles.place_on_tile(EnemyBouncePad, value22)
+        tiles.set_tile_at(value22, assets.tile("""
+            transparency16
+        """))
+        EnemyBouncePad.set_flag(SpriteFlag.INVISIBLE, True)
+
+def on_on_overlap5(sprite42, otherSprite22):
+    sprites.destroy(otherSprite22)
+    if knight.y + 5 < otherSprite22.y:
+        info.change_score_by(1)
+    else:
+        info.change_life_by(-1)
+sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap5)
+
+def on_on_overlap6(sprite9, otherSprite7):
+    otherSprite7.say_text("Hi mighty knight, I see you lost your sword.", 200, False)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC1, on_on_overlap6)
+
+def on_on_zero(status):
+    global BossAlive, espada
+    sprites.destroy(MyBoss, effects.disintegrate, 500)
+    sprites.destroy(statusbar)
+    BossAlive = False
+    info.change_score_by(50)
+    espada = sprites.create(img("""
+            . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . c c c . 
+                    . . . . . . . . . . . c 1 1 c . 
+                    . . . . . . . . . . c 1 b d c . 
+                    . . . . . . . . . c 1 c d c . . 
+                    . . . . . . . . c 1 c d f . . . 
+                    . e e . . . . c d c d f . . . . 
+                    . e 5 e . . f d c b f . . . . . 
+                    . f 5 e . f b c b f . . . . . . 
+                    . f 5 5 e e c c f . . . . . . . 
+                    . . e e 2 3 e f . . . . . . . . 
+                    . . f f e 2 e . . . . . . . . . 
+                    . . f e f e e f f . . . . . . . 
+                    f f e f f f 5 5 e f . . . . . . 
+                    f f f . . . e e f f . . . . . . 
+                    . f f . . . . . . . . . . . . .
+        """),
+        SpriteKind.Espada)
+    tiles.place_on_tile(espada, tiles.get_tile_location(30, 13))
+statusbars.on_zero(StatusBarKind.enemy_health, on_on_zero)
+
+def on_on_overlap7(sprite102, otherSprite82):
+    otherSprite82.say_text("Why look for money, if you don't have a sword", 200, False)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC6, on_on_overlap7)
+
+def on_on_overlap8(sprite6, otherSprite4):
+    otherSprite4.say_text("I am the mage, the sword is somwhere in the second phase",
+        200,
+        False)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC4, on_on_overlap8)
+
+def level_2():
+    global NPC62
+    sprites.destroy_all_sprites_of_kind(SpriteKind.Monstruo)
+    sprites.destroy_all_sprites_of_kind(SpriteKind.Coin)
+    sprites.destroy_all_sprites_of_kind(SpriteKind.Abrusto)
+    sprites.destroy_all_sprites_of_kind(SpriteKind.NPC1)
+    sprites.destroy_all_sprites_of_kind(SpriteKind.NPC2)
+    sprites.destroy_all_sprites_of_kind(SpriteKind.NPC3)
+    sprites.destroy_all_sprites_of_kind(SpriteKind.NPC4)
+    sprites.destroy_all_sprites_of_kind(SpriteKind.NPC6)
+    sprites.destroy_all_sprites_of_kind(SpriteKind.enemy)
+    # Configurar el nivel 2
+    scene.set_background_color(9)
+    tiles.set_current_tilemap(tilemap("""
+        level10
+    """))
+    knight.set_position(10, 10)
+    knight.ay = 500
+    # Crear NPC del nivel 2
+    for value282 in tiles.get_tiles_by_type(assets.tile("""
+        myTile29
+    """)):
+        NPC62 = sprites.create(img("""
+                . . . . . . f f f f f . . . . . 
+                            . . . . f f c c c c f f . . . . 
+                            . . . f c c c c f f f f f f . . 
+                            . . f c c c c f f f . . . . . . 
+                            . . f f f f f f f . . . . . . . 
+                            . f f 4 4 d 4 e f f f . . . . . 
+                            . . . f f d f d f . . . . . . . 
+                            . . . f d d d d f . . . . . . . 
+                            . . . . f c c c f . . . . . . . 
+                            . . . . f c c c f . . f f . . . 
+                            . f f f f c c c f f f d d f . . 
+                            f e e e e f c c f f e b 4 d f . 
+                            . f f f f f f f f f f f b 4 f . 
+                            . . . . . . f . . . . . f f d f 
+                            . . . . . . . . . . . . . . f f 
+                            . . . . . . . . . . . . . . . . 
+                            . . . . . . . . . . . . . . . .
+            """),
+            SpriteKind.NPC6)
+        animation.run_image_animation(NPC62,
+            [img("""
+                    . . . . . . f f f f f . . . . . 
+                                . . . . f f c c c c f f . . . . 
+                                . . . f c c c c f f f f f f . . 
+                                . . f c c c c f f f . . . . . . 
+                                . . f f f f f f f . . . . . . . 
+                                . f f 4 4 d 4 e f f f . . . . . 
+                                . . . f f d f d f . . . . . . . 
+                                . . . f d d d d f . . . . . . . 
+                                . . . . f c c c f . . . . . . . 
+                                . . . . f c c c f . . f f . . . 
+                                . f f f f c c c f f f d d f . . 
+                                f e e e e f c c f f e b 4 d f . 
+                                . f f f f f f f f f f f b 4 f . 
+                                . . . . . . f . . . . . f f d f 
+                                . . . . . . . . . . . . . . f f 
+                                . . . . . . . . . . . . . . . . 
+                                . . . . . . . . . . . . . . . .
+                """),
+                img("""
+                    . . . . . . . . . . . . . . . . 
+                                . . . . . . . . . . . . . . . . 
+                                . . . . . . f f f f f . . . . . 
+                                . . . . f f c c c c f f . . . . 
+                                . . . f c c c c f f f f f f . . 
+                                . . f c c c c f f f . . . . . . 
+                                . . f f f f f f f . . . . . . . 
+                                . f f 4 4 d 4 e f f f . . . . . 
+                                . . . f f d f d f . . . . . . . 
+                                . . . f d d d d f . . . . . . . 
+                                . . . . f c c c f . . . . . . . 
+                                . . . . f c c c f . . f f . . . 
+                                . f f f f c c c f f f d d f . . 
+                                f e e e e f c c f f e b 4 d f . 
+                                . f f f f f f f f f f f b 4 f . 
+                                . . . . . . f . . . . . f f d f 
+                                . . . . . . . . . . . . . . f f
+                """)],
+            200,
+            True)
+        tiles.place_on_tile(NPC62, value282)
+        tiles.set_tile_at(value282, assets.tile("""
+            transparency16
+        """))
+    boss1()
+def boss1():
+    global MyBoss, BossAlive, statusbar
+    MyBoss = sprites.create(img("""
+            .......ff..................
+                    ......f69ff................
+                    .....f9966cf...............
+                    ....f9199666f...ffff.......
+                    ....f911996cffff6c6cff.....
+                    ....c3193a6cfc6cccccc6f....
+                    ....fa99a99fccccc66ccccf...
+                    ....f991999fc666cc6966ccf..
+                    .....f99961fc69b6c666b6c6f.
+                    .....f999f9f699966c6cfbccf.
+                    ....f9c1fcfc619996ccf.fbcf.
+                    ...f16f9fcc699b91ccf..f9cf.
+                    ...f96f9fc66b9699cccf.f966f
+                    ..f19cf9f69996b69cc6f.f99cf
+                    ..f99f.f.f9999bc9cccf.f19cf
+                    .f99bf...f99999bcbccf..f6f.
+                    f991f....f9b999666cc6f.f6f.
+                    fb99f...f199919666cccf.f9f.
+                    .fb9f...f199996696cccf..f..
+                    ..f9f...f19996c66ccccf.....
+                    ..f6f..f19996ccc6c6cf......
+                    ..f9f..f19966cccc66991f....
+                    ..f6f..f9996ccfccc6999f....
+                    ...f..f19966ccffcc66991f...
+                    ......f9966ccf..fcc6699f...
+                    ......f99c6c6f..f6c6c99f...
+                    .....9966ccccf..fccc6699f..
+                    .....99c6c6c6f..f6c6cc69f..
+                    .....966cccff....fffffff...
+                    .....6cc6c6................
+        """),
+        SpriteKind.Boss1)
+    MyBoss.set_scale(2, ScaleAnchor.MIDDLE)
+    MyBoss.ay = 350
+    tiles.place_on_tile(MyBoss, tiles.get_tile_location(30, 8))
+    BossAlive = True
+    statusbar = statusbars.create(140, 10, StatusBarKind.enemy_health)
+    statusbar.attach_to_sprite(MyBoss)
+    statusbar.position_direction(CollisionDirection.TOP)
+    statusbar.set_offset_padding(0, -20)
+    statusbar.set_color(2, 12, 5)
+    statusbar.set_status_bar_flag(StatusBarFlag.SMOOTH_TRANSITION, True)
+    statusbar.set_bar_border(2, 15)
+    statusbar.max = 1000
+    statusbar.value = 1000
+
+def on_on_overlap9(sprite5, otherSprite3):
+    game.game_over(True)
+    game.set_game_over_effect(True, effects.confetti)
+sprites.on_overlap(SpriteKind.player, SpriteKind.Espada, on_on_overlap9)
+
+def on_on_overlap10(sprite10, otherSprite8):
+    if knight.vy > 0 and knight.y < MyBoss.y:
+        knight.vy = -70
+        statusbar.value += -100
+    else:
+        info.change_life_by(-1)
+    pause(1000)
+sprites.on_overlap(SpriteKind.player, SpriteKind.Boss1, on_on_overlap10)
 
 def main_menu():
     global Play, Options, knightExists, croshair
@@ -652,27 +838,23 @@ def main_menu():
         SpriteKind.crosshair)
     controller.move_sprite(croshair)
 
-def on_on_overlap8(sprite11, otherSprite9):
+def on_on_overlap11(sprite11, otherSprite9):
     sprites.destroy(otherSprite9)
     if knight.y + 5 < otherSprite9.y:
         info.change_score_by(1)
     else:
         info.change_life_by(-1)
-sprites.on_overlap(SpriteKind.player, SpriteKind.Monstruo, on_on_overlap8)
+sprites.on_overlap(SpriteKind.player, SpriteKind.Monstruo, on_on_overlap11)
 
-def on_on_overlap9(sprite10, otherSprite8):
-    otherSprite8.say_text("Why look for money, if you don't have a sword", 200, False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC6, on_on_overlap9)
+def on_on_overlap12(sprite52, otherSprite32):
+    otherSprite32.say_text("FRAAANKENSTEEEINN", 200, False)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC3, on_on_overlap12)
 
-def on_on_overlap10(sprite5, otherSprite3):
-    otherSprite3.say_text("FRAAANKENSTEEEINN", 200, False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC3, on_on_overlap10)
-
-def on_on_overlap11(sprite43, otherSprite23):
+def on_on_overlap13(sprite43, otherSprite23):
     otherSprite23.say_text("Thank you! Look for the Frank to find your sword.",
         200,
         False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC2, on_on_overlap11)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC2, on_on_overlap13)
 
 def level_1():
     global knightExists, knight, abrusto, coin, NPC12, NPC22, NPC32, NPC42, NPC62
@@ -1271,34 +1453,112 @@ def level_1():
             transparency16
         """))
     BouncingEnemies()
-NPC62: Sprite = None
 NPC42: Sprite = None
 NPC32: Sprite = None
 NPC22: Sprite = None
 NPC12: Sprite = None
 coin: Sprite = None
 abrusto: Sprite = None
+NPC62: Sprite = None
+espada: Sprite = None
+statusbar: StatusBarSprite = None
+MyBoss: Sprite = None
+EnemyBouncePad: Sprite = None
+monstruo: Sprite = None
 croshair: Sprite = None
 Options: Sprite = None
 Play: Sprite = None
-EnemyBouncePad: Sprite = None
-monstruo: Sprite = None
 mute: Sprite = None
 unMute: Sprite = None
+Muted = False
 backToMenu: Sprite = None
 livesChange: Sprite = None
 jump_count = 0
 knightExists = False
 knight: Sprite = None
 bee: Sprite = None
-Muted = False
+BossAlive = False
 lives = 0
-lives = 3
-Muted = False
 music.set_volume(150)
+lives = 3
+BossAlive = False
 main_menu()
 
 def on_on_update():
+    if BossAlive:
+        if knight.x < MyBoss.x:
+            MyBoss.vx = -40
+            MyBoss.set_image(img("""
+                .......ff..................
+                                ......f69ff................
+                                .....f9966cf...............
+                                ....f9199666f...ffff.......
+                                ....f911996cffff6c6cff.....
+                                ....c3193a6cfc6cccccc6f....
+                                ....fa99a99fccccc66ccccf...
+                                ....f991999fc666cc6966ccf..
+                                .....f99961fc69b6c666b6c6f.
+                                .....f999f9f699966c6cfbccf.
+                                ....f9c1fcfc619996ccf.fbcf.
+                                ...f16f9fcc699b91ccf..f9cf.
+                                ...f96f9fc66b9699cccf.f966f
+                                ..f19cf9f69996b69cc6f.f99cf
+                                ..f99f.f.f9999bc9cccf.f19cf
+                                .f99bf...f99999bcbccf..f6f.
+                                f991f....f9b999666cc6f.f6f.
+                                fb99f...f199919666cccf.f9f.
+                                .fb9f...f199996696cccf..f..
+                                ..f9f...f19996c66ccccf.....
+                                ..f6f..f19996ccc6c6cf......
+                                ..f9f..f19966cccc66991f....
+                                ..f6f..f9996ccfccc6999f....
+                                ...f..f19966ccffcc66991f...
+                                ......f9966ccf..fcc6699f...
+                                ......f99c6c6f..f6c6c99f...
+                                .....9966ccccf..fccc6699f..
+                                .....99c6c6c6f..f6c6cc69f..
+                                .....966cccff....fffffff...
+                                .....6cc6c6................
+            """))
+        elif knight.x > MyBoss.x:
+            MyBoss.vx = 40
+            MyBoss.set_image(img("""
+                ..................ff.......
+                                ................ff96f......
+                                ...............fc6699f.....
+                                .......ffff...f6669919f....
+                                .....ffc6c6ffffc699119f....
+                                ....f6cccccc6cfc6a3913c....
+                                ...fcccc66cccccf99a99af....
+                                ..fcc6696cc666cf999199f....
+                                .f6c6b666c6b96cf16999f.....
+                                .fccbfc6c669996f9f999f.....
+                                .fcbf.fcc699916cfcf1c9f....
+                                .fc9f..fcc19b996ccf9f61f...
+                                f669f.fccc9969b66cf9f69f...
+                                fc99f.f6cc96b69996f9fc91f..
+                                fc91f.fccc9cb9999f.f.f99f..
+                                .f6f..fccbcb99999f...fb99f.
+                                .f6f.f6cc666999b9f....f199f
+                                .f9f.fccc666919991f...f99bf
+                                ..f..fccc696699991f...f9bf.
+                                .....fcccc66c69991f...f9f..
+                                ......fc6c6ccc69991f..f6f..
+                                .....fcc9ccccc66991f..f9f..
+                                .....f9c9ccfccc6999f..f6f..
+                                ....fcc99bf.fcc66991f..f...
+                                ....f6c999f..fcc6699f......
+                                ...f6c9919f..f6c6c99f......
+                                ...f6c9919f..fccc6699f.....
+                                ...fccc99f...f6c6cc69f.....
+                                ...f6c669f....fffffff......
+                                ....fffff..................
+            """))
+        if Math.percent_chance(3):
+            MyBoss.vy = -100
+game.on_update(on_on_update)
+
+def on_on_update2():
     global jump_count
     if knightExists:
         knight.set_image(assets.image("""
@@ -1354,4 +1614,4 @@ def on_on_update():
             """))
         if knight.vx < 0:
             knight.image.flip_x()
-game.on_update(on_on_update)
+game.on_update(on_on_update2)
