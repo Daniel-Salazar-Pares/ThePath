@@ -18,6 +18,7 @@ class SpriteKind:
     Boss1 = SpriteKind.create()
     Espada = SpriteKind.create()
     crosshair = SpriteKind.create()
+    breackableNotch = SpriteKind.create()
 
 def on_on_overlap(sprite7, otherSprite5):
     global bee
@@ -661,8 +662,8 @@ sprites.on_overlap(SpriteKind.player, SpriteKind.Espada, on_on_overlap9)
 
 def on_on_overlap10(sprite10, otherSprite8):
     if knight.vy > 0 and knight.y < MyBoss.y:
-        knight.vy = -70
-        statusbar.value += -100
+        knight.vy = -150
+        statusbar.value += -150
     else:
         info.change_life_by(-1)
     pause(1000)
@@ -857,7 +858,7 @@ def on_on_overlap13(sprite43, otherSprite23):
 sprites.on_overlap(SpriteKind.player, SpriteKind.NPC2, on_on_overlap13)
 
 def level_1():
-    global knightExists, knight, abrusto, coin, NPC12, NPC22, NPC32, NPC42, NPC62
+    global knightExists, knight, abrusto, coin, NPC12, NPC22, NPC32, NPC42, NPC62, BreackableBlock
     scene.set_background_image(img("""
         ................................................................................................................................................................
                 ................................................................................................................................................................
@@ -1452,7 +1453,34 @@ def level_1():
         tiles.set_tile_at(value28, assets.tile("""
             transparency16
         """))
+    for value3 in tiles.get_tiles_by_type(assets.tile("""
+        myTile30
+    """)):
+        BreackableBlock = sprites.create(img("""
+                . . f f f f f f f f f f f f . . 
+                            . f d d d d d d d d d d d d f . 
+                            f d d d c d d d c c c c d d d f 
+                            f d d c c d d d c c c c c d d f 
+                            f d c c c d d d c d d c c c d f 
+                            f d c d c c c c c d d c c c d f 
+                            f d c c c c c c c c c c c c d f 
+                            f d c c c c c c c c c c d c d f 
+                            f c c c c c c d d c c c c c c f 
+                            f c c c c c c d d c c c c c c f 
+                            f c c c c c c c c c c c c c c f 
+                            f c c c c c c c c c c c c c c f 
+                            f c c c c c c c c c c c c c c f 
+                            f c c c c c c c c c c c c c c f 
+                            . f c c c c c c c c c c c c f . 
+                            . . f f f f f f f f f f f f . .
+            """),
+            SpriteKind.breackableNotch)
+        tiles.place_on_tile(BreackableBlock, value3)
+        tiles.set_tile_at(value3, assets.tile("""
+            transparency16
+        """))
     BouncingEnemies()
+BreackableBlock: Sprite = None
 NPC42: Sprite = None
 NPC32: Sprite = None
 NPC22: Sprite = None
@@ -1554,7 +1582,7 @@ def on_on_update():
                                 ...f6c669f....fffffff......
                                 ....fffff..................
             """))
-        if Math.percent_chance(3):
+        if Math.percent_chance(1):
             MyBoss.vy = -100
 game.on_update(on_on_update)
 

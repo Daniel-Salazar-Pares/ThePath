@@ -17,6 +17,7 @@ namespace SpriteKind {
     export const Boss1 = SpriteKind.create()
     export const Espada = SpriteKind.create()
     export const crosshair = SpriteKind.create()
+    export const breackableNotch = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Abrusto, function (sprite7, otherSprite5) {
     sprites.destroy(otherSprite5)
@@ -502,6 +503,7 @@ function level_2 () {
     // Configurar el nivel 2
     scene.setBackgroundColor(9)
     tiles.setCurrentTilemap(tilemap`level10`)
+    music.play(music.createSong(hex`0078000408040106001c00010a006400f401640000040000000000000000000000000000000002af00000004000212160400080001160c0010000312141614001800011618001c0001161c002000030f12162000240001162400280002121628002c0001163000340002121634003800011238003c0001123c004000011440004400011244004800011248004c000212144c0050000112540058000311121658005c0001165c006000011260006400011468006c0001166c007000011670007400011474007800011678007c00030f12167c008000021114`), music.PlaybackMode.LoopingInBackground)
     knight.setPosition(10, 10)
     knight.ay = 500
     // Crear NPC del nivel 2
@@ -937,6 +939,7 @@ function level_1 () {
     scene.setBackgroundColor(9)
     knightExists = true
     knight = sprites.create(assets.image`LilDemon`, SpriteKind.Player)
+    music.play(music.createSong(hex`0078000408040200001c00010a006400f401640000040000000000000000000000000005000004b40000000400012504000800012508000c0001240c001000012210001400012214001800012018001c00011e1c002000011e24002800012228002c00011d2c003000012230003400012534003800012938003c0001273c004000012540004400012044004800012048004c0001274c005000012250005400011e58005c00011e5c006000012260006400012264006800011e68006c00011d6c007000011b70007400011b74007800011d78007c0001247c008000012706001c00010a006400f4016400000400000000000000000000000000000000026800000004000312141608000c00031214160c00100003121416140018000312141618001c000312141624002800031214162c0030000312141638003c0003121416400044000312141644004800031214164c00500003121416540058000312141658005c0003121416`), music.PlaybackMode.LoopingInBackground)
     info.setLife(lives)
     info.setScore(0)
     scene.cameraFollowSprite(knight)
@@ -1382,8 +1385,31 @@ function level_1 () {
         tiles.placeOnTile(NPC62, value28)
         tiles.setTileAt(value28, assets.tile`transparency16`)
     }
+    for (let value3 of tiles.getTilesByType(assets.tile`myTile30`)) {
+        BreackableBlock = sprites.create(img`
+            . . f f f f f f f f f f f f . . 
+            . f d d d d d d d d d d d d f . 
+            f d d d c d d d c c c c d d d f 
+            f d d c c d d d c c c c c d d f 
+            f d c c c d d d c d d c c c d f 
+            f d c d c c c c c d d c c c d f 
+            f d c c c c c c c c c c c c d f 
+            f d c c c c c c c c c c d c d f 
+            f c c c c c c d d c c c c c c f 
+            f c c c c c c d d c c c c c c f 
+            f c c c c c c c c c c c c c c f 
+            f c c c c c c c c c c c c c c f 
+            f c c c c c c c c c c c c c c f 
+            f c c c c c c c c c c c c c c f 
+            . f c c c c c c c c c c c c f . 
+            . . f f f f f f f f f f f f . . 
+            `, SpriteKind.breackableNotch)
+        tiles.placeOnTile(BreackableBlock, value3)
+        tiles.setTileAt(value3, assets.tile`transparency16`)
+    }
     BouncingEnemies()
 }
+let BreackableBlock: Sprite = null
 let NPC42: Sprite = null
 let NPC32: Sprite = null
 let NPC22: Sprite = null
@@ -1485,7 +1511,7 @@ game.onUpdate(function () {
                 ....fffff..................
                 `)
         }
-        if (Math.percentChance(0.3)) {
+        if (Math.percentChance(1)) {
             MyBoss.vy = -100
         }
     }
