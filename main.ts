@@ -48,9 +48,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Abrusto, function (sprite7, othe
     bee.setPosition(knight.x + 100, knight.y - 40)
     bee.follow(knight, 70)
 })
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite3, location) {
-    level_2()
-})
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (knightExists) {
         if (jump_count < 2) {
@@ -242,21 +239,21 @@ sprites.onOverlap(SpriteKind.crosshair, SpriteKind.button, function (sprite4, ot
             sprites.destroyAllSpritesOfKind(SpriteKind.crosshair)
             croshair = sprites.create(img`
                 . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . f f . . . . 
-                . . . . . . . f f f f f . . . . 
-                . . . . . f f f . . f . . . . . 
-                . . . . f f . . . f f . . . . . 
-                . . . . . f f . . f . . . . . . 
-                . . . . . f f f f f . . . . . . 
-                . . . . f f . f f . . . . . . . 
-                . . . f f . . . . . . . . . . . 
-                . . f f . . . . . . . . . . . . 
+                . . . . . . . . . . . . c c c . 
+                . . . . . . . . . . . c 1 1 c . 
+                . . . . . . . . . . c 1 b d c . 
+                . . . . . . . . . c 1 c d c . . 
+                . . . . . . . . c 1 c d f . . . 
+                . e e . . . . c d c d f . . . . 
+                . e 5 e . . f d c b f . . . . . 
+                . f 5 e . f b c b f . . . . . . 
+                . f 5 5 e e c c f . . . . . . . 
+                . . e e 2 3 e f . . . . . . . . 
+                . . f f e 2 e . . . . . . . . . 
+                . . f e f e e f f . . . . . . . 
+                f f e f f f 5 5 e f . . . . . . 
+                f f f . . . e e f f . . . . . . 
                 . f f . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
                 `, SpriteKind.crosshair)
             controller.moveSprite(croshair)
             otpions()
@@ -267,21 +264,21 @@ sprites.onOverlap(SpriteKind.crosshair, SpriteKind.button, function (sprite4, ot
             lives = game.askForNumber("Set lives:", 1)
             croshair = sprites.create(img`
                 . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . f f . . . . 
-                . . . . . . . f f f f f . . . . 
-                . . . . . f f f . . f . . . . . 
-                . . . . f f . . . f f . . . . . 
-                . . . . . f f . . f . . . . . . 
-                . . . . . f f f f f . . . . . . 
-                . . . . f f . f f . . . . . . . 
-                . . . f f . . . . . . . . . . . 
-                . . f f . . . . . . . . . . . . 
+                . . . . . . . . . . . . c c c . 
+                . . . . . . . . . . . c 1 1 c . 
+                . . . . . . . . . . c 1 b d c . 
+                . . . . . . . . . c 1 c d c . . 
+                . . . . . . . . c 1 c d f . . . 
+                . e e . . . . c d c d f . . . . 
+                . e 5 e . . f d c b f . . . . . 
+                . f 5 e . f b c b f . . . . . . 
+                . f 5 5 e e c c f . . . . . . . 
+                . . e e 2 3 e f . . . . . . . . 
+                . . f f e 2 e . . . . . . . . . 
+                . . f e f e e f f . . . . . . . 
+                f f e f f f 5 5 e f . . . . . . 
+                f f f . . . e e f f . . . . . . 
                 . f f . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
                 `, SpriteKind.crosshair)
             controller.moveSprite(croshair)
             otpions()
@@ -294,21 +291,21 @@ sprites.onOverlap(SpriteKind.crosshair, SpriteKind.button, function (sprite4, ot
             Muted = true
             croshair = sprites.create(img`
                 . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . f f . . . . 
-                . . . . . . . f f f f f . . . . 
-                . . . . . f f f . . f . . . . . 
-                . . . . f f . . . f f . . . . . 
-                . . . . . f f . . f . . . . . . 
-                . . . . . f f f f f . . . . . . 
-                . . . . f f . f f . . . . . . . 
-                . . . f f . . . . . . . . . . . 
-                . . f f . . . . . . . . . . . . 
+                . . . . . . . . . . . . c c c . 
+                . . . . . . . . . . . c 1 1 c . 
+                . . . . . . . . . . c 1 b d c . 
+                . . . . . . . . . c 1 c d c . . 
+                . . . . . . . . c 1 c d f . . . 
+                . e e . . . . c d c d f . . . . 
+                . e 5 e . . f d c b f . . . . . 
+                . f 5 e . f b c b f . . . . . . 
+                . f 5 5 e e c c f . . . . . . . 
+                . . e e 2 3 e f . . . . . . . . 
+                . . f f e 2 e . . . . . . . . . 
+                . . f e f e e f f . . . . . . . 
+                f f e f f f 5 5 e f . . . . . . 
+                f f f . . . e e f f . . . . . . 
                 . f f . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
                 `, SpriteKind.crosshair)
             controller.moveSprite(croshair)
             otpions()
@@ -321,21 +318,21 @@ sprites.onOverlap(SpriteKind.crosshair, SpriteKind.button, function (sprite4, ot
             Muted = false
             croshair = sprites.create(img`
                 . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . f f . . . . 
-                . . . . . . . f f f f f . . . . 
-                . . . . . f f f . . f . . . . . 
-                . . . . f f . . . f f . . . . . 
-                . . . . . f f . . f . . . . . . 
-                . . . . . f f f f f . . . . . . 
-                . . . . f f . f f . . . . . . . 
-                . . . f f . . . . . . . . . . . 
-                . . f f . . . . . . . . . . . . 
+                . . . . . . . . . . . . c c c . 
+                . . . . . . . . . . . c 1 1 c . 
+                . . . . . . . . . . c 1 b d c . 
+                . . . . . . . . . c 1 c d c . . 
+                . . . . . . . . c 1 c d f . . . 
+                . e e . . . . c d c d f . . . . 
+                . e 5 e . . f d c b f . . . . . 
+                . f 5 e . f b c b f . . . . . . 
+                . f 5 5 e e c c f . . . . . . . 
+                . . e e 2 3 e f . . . . . . . . 
+                . . f f e 2 e . . . . . . . . . 
+                . . f e f e e f f . . . . . . . 
+                f f e f f f 5 5 e f . . . . . . 
+                f f f . . . e e f f . . . . . . 
                 . f f . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
                 `, SpriteKind.crosshair)
             controller.moveSprite(croshair)
             otpions()
@@ -354,17 +351,15 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.breackableNotch, function (sprit
     music.play(music.createSoundEffect(WaveShape.Noise, 553, 419, 255, 139, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
     sprites.destroy(otherSprite)
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite, otherSprite) {
-    info.changeScoreBy(1)
-    music.play(music.createSoundEffect(WaveShape.Square, 4253, 3852, 255, 0, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
-    sprites.destroy(otherSprite)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile31`, function (sprite2, location2) {
+    game.gameOver(false)
+    game.setGameOverEffect(false, effects.melt)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile32`, function (sprite32, location) {
+    level_2()
 })
 sprites.onOverlap(SpriteKind.Monstruo, SpriteKind.EnemyBounce, function (sprite8, otherSprite6) {
     sprite8.vx = sprite8.vx * -1
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite2, location2) {
-    game.gameOver(false)
-    game.setGameOverEffect(false, effects.melt)
 })
 function BouncingEnemies () {
     for (let value2 of tiles.getTilesByType(assets.tile`bee`)) {
@@ -494,7 +489,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.NPC6, function (sprite102, other
     otherSprite82.sayText("Why look for money, if you don't have a sword", 200, false)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.NPC4, function (sprite6, otherSprite4) {
-    otherSprite4.sayText("I am the mage, the sword is somwhere in the second phase", 200, false)
+    otherSprite4.sayText("I am the mage, the sword is somwhere in the second phase. Perhaps that strange portal can bring you there", 200, false)
 })
 function level_2 () {
     sprites.destroyAllSpritesOfKind(SpriteKind.Monstruo)
@@ -510,8 +505,8 @@ function level_2 () {
     scene.setBackgroundColor(9)
     tiles.setCurrentTilemap(tilemap`level10`)
     music.stopAllSounds()
-    music.play(music.createSong(hex`0078000408040106001c00010a006400f401640000040000000000000000000000000000000002af00000004000212160400080001160c0010000312141614001800011618001c0001161c002000030f12162000240001162400280002121628002c0001163000340002121634003800011238003c0001123c004000011440004400011244004800011248004c000212144c0050000112540058000311121658005c0001165c006000011260006400011468006c0001166c007000011670007400011474007800011678007c00030f12167c008000021114`), music.PlaybackMode.LoopingInBackground)
-    knight.setPosition(10, 10)
+    music.play(music.createSong(hex`00780004080200`), music.PlaybackMode.LoopingInBackground)
+    knight.setPosition(26, 29)
     knight.ay = 500
     // Crear NPC del nivel 2
     for (let value282 of tiles.getTilesByType(assets.tile`myTile29`)) {
@@ -628,7 +623,7 @@ function boss1 () {
     statusbar.max = 1000
     statusbar.value = 1000
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Espada, function (sprite5, otherSprite3) {
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Espada, function (sprite5, otherSprite32) {
     game.gameOver(true)
     game.setGameOverEffect(true, effects.confetti)
 })
@@ -685,36 +680,36 @@ function main_menu () {
         bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccbbccccbbbbbbbcccbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
         bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccbbccccbbbbbbbcccbbbccccbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
         bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbcccbbbbbbbcccbbbccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbcccbbbbcccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbbbbbbbccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccbbbccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccbbbbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbbbbbccccbbbbbbbbbbbbcccbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbcccbbbbbbbbbbbbcccbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbcccbbbbbbbbbbbbcccbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbbbbccccbbbbbbbbbbbbccccccccbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbbbcccccbbbbbbbbccccccccccccbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccbbcccccccbbbbbbbbccccccccccccbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccbbbbbbbbbccccccccccbbbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccccbbbbbbbbbbbbbccccbbbbbbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccbbbbbbbbbbbbbbbcccbbbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbbcccbccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbccccccbbbbbbbbbcccbbbbbbbbbbcccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbccccccccccbbbbbbbcccbbbbbbbbbbcccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbccccccccccccbbbbbbcccbbbbbbbbbbcccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbcccccccccccccbbbbbbcccbbbbbbbbbcccccbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbcccccbbbbccccbbbbbbcccbbbbcccbbccccbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbccccbbbbbccccbbbbbbccccbbbcccbbcccbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbcccbbbbbcccccbbcccbccccccccccbbcccbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbcccbbbbcccccccccccbccccccccccbbcccbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbcccbbbbcccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbbbbbbbccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf69ffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf9966cfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf9199666fbbbffffbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf911996cffff6c6cffbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc3193a6cfc6cccccc6fbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfa99a99fccccc66ccccfbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf991999fc666cc6966ccfbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf99961fc69b6c666b6c6fbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccbbbccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf999f9f699966c6cfbccfbbbbbbbbbbbbbbbbb
+        bbbbbbbbbfffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccbbbbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf9c1fcfc619996ccfbfbcfbbbbbbbbbbbbbbbbb
+        bbbbbbbbff22222ffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbbbbbccccbbbbbbbbbbbbcccbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbf16f9fcc699b91ccfbbf9cfbbbbbbbbbbbbbbbbb
+        bbbbbbbbf2ff2222fbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbcccbbbbbbbbbbbbcccbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbf96f9fc66b9699cccfbf966fbbbbbbbbbbbbbbbb
+        bbbbbbbbfffff22fffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbcccbbbbbbbbbbbbcccbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbf19cf9f69996b69cc6fbf99cfbbbbbbbbbbbbbbbb
+        bbbbbbbbbbfdddbbbbbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbbbbccccbbbbbbbbbbbbccccccccbbbcccbbbbbbbbbbbbbbbbbbbbbf99fbfbf9999bc9cccfbf19cfbbbbbbbbbbbbbbbb
+        bbbbbbbbbbfdfffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbbbcccccbbbbbbbbccccccccccccbbbcccbbbbbbbbbbbbbbbbbbbbf99bfbbbf99999bcbccfbbf6fbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbfbfdddbbbbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccbbcccccccbbbbbbbbccccccccccccbbbccccbbbbbbbbbbbbbbbbbbf991fbbbbf9b999666cc6fbf6fbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbfbfdfbfbfbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccbbbbbbbbbccccccccccbbbbbccccbbbbbbbbbbbbbbbbbbfb99fbbbf199919666cccfbf9fbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbfbfbfbfbfbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccccbbbbbbbbbbbbbccccbbbbbbbbccccbbbbbbbbbbbbbbbbbbbfb9fbbbf199996696cccfbbfbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbfbfbfbfbfbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccbbbbbbbbbbbbbbbcccbbbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbf9fbbbf19996c66ccccfbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbfbfbbbbbbbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbf6fbbf19996ccc6c6cfbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbbcccbccccccbbbbbbbbbbbbbf9fbbf19966cccc66991fbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbfccc444444fbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbccccccbbbbbbbbbcccbbbbbbbbbbcccccccccccbbbbbbbbbbbbf6fbbf9996ccfccc6999fbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbfccc4ffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbccccccccccbbbbbbbcccbbbbbbbbbbcccccccccccbbbbbbbbbbbbbfbbf19966ccffcc66991fbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbfccc4fbbbbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbccccccccccccbbbbbbcccbbbbbbbbbbcccccccccccbbbbbbbbbbbbbbbbf9966ccfbbfcc6699fbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbfccc4fbbbbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbcccccccccccccbbbbbbcccbbbbbbbbbcccccbbbbcccbbbbbbbbbbbbbbbbf99c6c6fbbf6c6c99fbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbfccc4fffbbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbcccccbbbbccccbbbbbbcccbbbbcccbbccccbbbbbcccbbbbbbbbbbbbbbb9966ccccfbbfccc6699fbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbf4444fffbffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbccccbbbbbccccbbbbbbccccbbbcccbbcccbbbbbbcccbbbbbbbbbbbbbbb99c6c6c6fbbf6c6cc69fbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbffffffbfffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbcccbbbbbcccccbbcccbccccccccccbbcccbbbbbbcccbbbbbbbbbbbbbbb966cccffbbbbfffffffbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbcccbbbbcccccccccccbccccccccccbbcccbbbbbbcccbbbbbbbbbbbbbbb6cc6c6bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
         bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbccccbbccccccccccccbbcccccccccbbcccbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
         bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbccccccccccccccccccbbbbccccccbbbcccbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
         bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbccccccccccbbcccccbbbbbbbbbbbbbbcccbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
@@ -788,24 +783,29 @@ function main_menu () {
     knightExists = false
     croshair = sprites.create(img`
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . f f . . . . 
-        . . . . . . . f f f f f . . . . 
-        . . . . . f f f . . f . . . . . 
-        . . . . f f . . . f f . . . . . 
-        . . . . . f f . . f . . . . . . 
-        . . . . . f f f f f . . . . . . 
-        . . . . f f . f f . . . . . . . 
-        . . . f f . . . . . . . . . . . 
-        . . f f . . . . . . . . . . . . 
+        . . . . . . . . . . . . c c c . 
+        . . . . . . . . . . . c 1 1 c . 
+        . . . . . . . . . . c 1 b d c . 
+        . . . . . . . . . c 1 c d c . . 
+        . . . . . . . . c 1 c d f . . . 
+        . e e . . . . c d c d f . . . . 
+        . e 5 e . . f d c b f . . . . . 
+        . f 5 e . f b c b f . . . . . . 
+        . f 5 5 e e c c f . . . . . . . 
+        . . e e 2 3 e f . . . . . . . . 
+        . . f f e 2 e . . . . . . . . . 
+        . . f e f e e f f . . . . . . . 
+        f f e f f f 5 5 e f . . . . . . 
+        f f f . . . e e f f . . . . . . 
         . f f . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
         `, SpriteKind.crosshair)
     controller.moveSprite(croshair)
 }
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite3, otherSprite3) {
+    info.changeScoreBy(1)
+    music.play(music.createSoundEffect(WaveShape.Square, 4253, 3852, 255, 0, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+    sprites.destroy(otherSprite3)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Monstruo, function (sprite11, otherSprite9) {
     sprites.destroy(otherSprite9)
     if (knight.y + 5 < otherSprite9.y) {
@@ -813,9 +813,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Monstruo, function (sprite11, ot
     } else {
         info.changeLifeBy(-1)
     }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.NPC3, function (sprite52, otherSprite32) {
-    otherSprite32.sayText("FRAAANKENSTEEEINN", 200, false)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.NPC2, function (sprite43, otherSprite23) {
     otherSprite23.sayText("Thank you! Look for the Frank to find your sword.", 200, false)
@@ -946,7 +943,7 @@ function level_1 () {
     scene.setBackgroundColor(9)
     knightExists = true
     knight = sprites.create(assets.image`LilDemon`, SpriteKind.Player)
-    music.play(music.createSong(hex`0078000408040200001c00010a006400f401640000040000000000000000000000000005000004b40000000400012504000800012508000c0001240c001000012210001400012214001800012018001c00011e1c002000011e24002800012228002c00011d2c003000012230003400012534003800012938003c0001273c004000012540004400012044004800012048004c0001274c005000012250005400011e58005c00011e5c006000012260006400012264006800011e68006c00011d6c007000011b70007400011b74007800011d78007c0001247c008000012706001c00010a006400f4016400000400000000000000000000000000000000026800000004000312141608000c00031214160c00100003121416140018000312141618001c000312141624002800031214162c0030000312141638003c0003121416400044000312141644004800031214164c00500003121416540058000312141658005c0003121416`), music.PlaybackMode.LoopingInBackground)
+    music.play(music.createSong(hex`00780004080200`), music.PlaybackMode.LoopingInBackground)
     info.setLife(lives)
     info.setScore(0)
     scene.cameraFollowSprite(knight)
@@ -1416,6 +1413,9 @@ function level_1 () {
     }
     BouncingEnemies()
 }
+sprites.onOverlap(SpriteKind.Player, SpriteKind.NPC3, function (sprite52, otherSprite322) {
+    otherSprite322.sayText("FRAAANKENSTEEEINN", 200, false)
+})
 let BreackableBlock: Sprite = null
 let NPC42: Sprite = null
 let NPC32: Sprite = null

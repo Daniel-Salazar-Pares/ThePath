@@ -49,12 +49,6 @@ def on_on_overlap(sprite7, otherSprite5):
     bee.follow(knight, 70)
 sprites.on_overlap(SpriteKind.player, SpriteKind.Abrusto, on_on_overlap)
 
-def on_overlap_tile(sprite3, location):
-    level_2()
-scene.on_overlap_tile(SpriteKind.player,
-    sprites.dungeon.collectible_blue_crystal,
-    on_overlap_tile)
-
 def on_up_pressed():
     global jump_count
     if knightExists:
@@ -258,21 +252,21 @@ def on_on_overlap2(sprite4, otherSprite2):
             sprites.destroy_all_sprites_of_kind(SpriteKind.crosshair)
             croshair = sprites.create(img("""
                     . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . f f . . . . 
-                                    . . . . . . . f f f f f . . . . 
-                                    . . . . . f f f . . f . . . . . 
-                                    . . . . f f . . . f f . . . . . 
-                                    . . . . . f f . . f . . . . . . 
-                                    . . . . . f f f f f . . . . . . 
-                                    . . . . f f . f f . . . . . . . 
-                                    . . . f f . . . . . . . . . . . 
-                                    . . f f . . . . . . . . . . . . 
-                                    . f f . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . .
+                                    . . . . . . . . . . . . c c c . 
+                                    . . . . . . . . . . . c 1 1 c . 
+                                    . . . . . . . . . . c 1 b d c . 
+                                    . . . . . . . . . c 1 c d c . . 
+                                    . . . . . . . . c 1 c d f . . . 
+                                    . e e . . . . c d c d f . . . . 
+                                    . e 5 e . . f d c b f . . . . . 
+                                    . f 5 e . f b c b f . . . . . . 
+                                    . f 5 5 e e c c f . . . . . . . 
+                                    . . e e 2 3 e f . . . . . . . . 
+                                    . . f f e 2 e . . . . . . . . . 
+                                    . . f e f e e f f . . . . . . . 
+                                    f f e f f f 5 5 e f . . . . . . 
+                                    f f f . . . e e f f . . . . . . 
+                                    . f f . . . . . . . . . . . . .
                 """),
                 SpriteKind.crosshair)
             controller.move_sprite(croshair)
@@ -283,21 +277,21 @@ def on_on_overlap2(sprite4, otherSprite2):
             lives = game.ask_for_number("Set lives:", 1)
             croshair = sprites.create(img("""
                     . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . f f . . . . 
-                                    . . . . . . . f f f f f . . . . 
-                                    . . . . . f f f . . f . . . . . 
-                                    . . . . f f . . . f f . . . . . 
-                                    . . . . . f f . . f . . . . . . 
-                                    . . . . . f f f f f . . . . . . 
-                                    . . . . f f . f f . . . . . . . 
-                                    . . . f f . . . . . . . . . . . 
-                                    . . f f . . . . . . . . . . . . 
-                                    . f f . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . .
+                                    . . . . . . . . . . . . c c c . 
+                                    . . . . . . . . . . . c 1 1 c . 
+                                    . . . . . . . . . . c 1 b d c . 
+                                    . . . . . . . . . c 1 c d c . . 
+                                    . . . . . . . . c 1 c d f . . . 
+                                    . e e . . . . c d c d f . . . . 
+                                    . e 5 e . . f d c b f . . . . . 
+                                    . f 5 e . f b c b f . . . . . . 
+                                    . f 5 5 e e c c f . . . . . . . 
+                                    . . e e 2 3 e f . . . . . . . . 
+                                    . . f f e 2 e . . . . . . . . . 
+                                    . . f e f e e f f . . . . . . . 
+                                    f f e f f f 5 5 e f . . . . . . 
+                                    f f f . . . e e f f . . . . . . 
+                                    . f f . . . . . . . . . . . . .
                 """),
                 SpriteKind.crosshair)
             controller.move_sprite(croshair)
@@ -310,21 +304,21 @@ def on_on_overlap2(sprite4, otherSprite2):
             Muted = True
             croshair = sprites.create(img("""
                     . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . f f . . . . 
-                                    . . . . . . . f f f f f . . . . 
-                                    . . . . . f f f . . f . . . . . 
-                                    . . . . f f . . . f f . . . . . 
-                                    . . . . . f f . . f . . . . . . 
-                                    . . . . . f f f f f . . . . . . 
-                                    . . . . f f . f f . . . . . . . 
-                                    . . . f f . . . . . . . . . . . 
-                                    . . f f . . . . . . . . . . . . 
-                                    . f f . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . .
+                                    . . . . . . . . . . . . c c c . 
+                                    . . . . . . . . . . . c 1 1 c . 
+                                    . . . . . . . . . . c 1 b d c . 
+                                    . . . . . . . . . c 1 c d c . . 
+                                    . . . . . . . . c 1 c d f . . . 
+                                    . e e . . . . c d c d f . . . . 
+                                    . e 5 e . . f d c b f . . . . . 
+                                    . f 5 e . f b c b f . . . . . . 
+                                    . f 5 5 e e c c f . . . . . . . 
+                                    . . e e 2 3 e f . . . . . . . . 
+                                    . . f f e 2 e . . . . . . . . . 
+                                    . . f e f e e f f . . . . . . . 
+                                    f f e f f f 5 5 e f . . . . . . 
+                                    f f f . . . e e f f . . . . . . 
+                                    . f f . . . . . . . . . . . . .
                 """),
                 SpriteKind.crosshair)
             controller.move_sprite(croshair)
@@ -337,21 +331,21 @@ def on_on_overlap2(sprite4, otherSprite2):
             Muted = False
             croshair = sprites.create(img("""
                     . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . . 
-                                    . . . . . . . . . . f f . . . . 
-                                    . . . . . . . f f f f f . . . . 
-                                    . . . . . f f f . . f . . . . . 
-                                    . . . . f f . . . f f . . . . . 
-                                    . . . . . f f . . f . . . . . . 
-                                    . . . . . f f f f f . . . . . . 
-                                    . . . . f f . f f . . . . . . . 
-                                    . . . f f . . . . . . . . . . . 
-                                    . . f f . . . . . . . . . . . . 
-                                    . f f . . . . . . . . . . . . . 
-                                    . . . . . . . . . . . . . . . .
+                                    . . . . . . . . . . . . c c c . 
+                                    . . . . . . . . . . . c 1 1 c . 
+                                    . . . . . . . . . . c 1 b d c . 
+                                    . . . . . . . . . c 1 c d c . . 
+                                    . . . . . . . . c 1 c d f . . . 
+                                    . e e . . . . c d c d f . . . . 
+                                    . e 5 e . . f d c b f . . . . . 
+                                    . f 5 e . f b c b f . . . . . . 
+                                    . f 5 5 e e c c f . . . . . . . 
+                                    . . e e 2 3 e f . . . . . . . . 
+                                    . . f f e 2 e . . . . . . . . . 
+                                    . . f e f e e f f . . . . . . . 
+                                    f f e f f f 5 5 e f . . . . . . 
+                                    f f f . . . e e f f . . . . . . 
+                                    . f f . . . . . . . . . . . . .
                 """),
                 SpriteKind.crosshair)
             controller.move_sprite(croshair)
@@ -380,30 +374,26 @@ sprites.on_overlap(SpriteKind.player,
     SpriteKind.breackableNotch,
     on_on_overlap3)
 
-def on_on_overlap4(sprite2, otherSprite3):
-    info.change_score_by(1)
-    music.play(music.create_sound_effect(WaveShape.SQUARE,
-            4253,
-            3852,
-            255,
-            0,
-            200,
-            SoundExpressionEffect.NONE,
-            InterpolationCurve.LINEAR),
-        music.PlaybackMode.IN_BACKGROUND)
-    sprites.destroy(otherSprite3)
-sprites.on_overlap(SpriteKind.player, SpriteKind.Coin, on_on_overlap4)
-
-def on_on_overlap5(sprite8, otherSprite6):
-    sprite8.vx = sprite8.vx * -1
-sprites.on_overlap(SpriteKind.Monstruo, SpriteKind.EnemyBounce, on_on_overlap5)
-
-def on_overlap_tile2(sprite22, location2):
+def on_overlap_tile(sprite2, location2):
     game.game_over(False)
     game.set_game_over_effect(False, effects.melt)
 scene.on_overlap_tile(SpriteKind.player,
-    sprites.dungeon.collectible_red_crystal,
+    assets.tile("""
+        myTile31
+    """),
+    on_overlap_tile)
+
+def on_overlap_tile2(sprite32, location):
+    level_2()
+scene.on_overlap_tile(SpriteKind.player,
+    assets.tile("""
+        myTile32
+    """),
     on_overlap_tile2)
+
+def on_on_overlap4(sprite8, otherSprite6):
+    sprite8.vx = sprite8.vx * -1
+sprites.on_overlap(SpriteKind.Monstruo, SpriteKind.EnemyBounce, on_on_overlap4)
 
 def BouncingEnemies():
     global monstruo, EnemyBouncePad
@@ -501,17 +491,17 @@ def BouncingEnemies():
         """))
         EnemyBouncePad.set_flag(SpriteFlag.INVISIBLE, True)
 
-def on_on_overlap6(sprite42, otherSprite22):
+def on_on_overlap5(sprite42, otherSprite22):
     sprites.destroy(otherSprite22)
     if knight.y + 5 < otherSprite22.y:
         info.change_score_by(1)
     else:
         info.change_life_by(-1)
-sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap6)
+sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap5)
 
-def on_on_overlap7(sprite9, otherSprite7):
+def on_on_overlap6(sprite9, otherSprite7):
     otherSprite7.say_text("Hi mighty knight, I see you lost your sword.", 200, False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC1, on_on_overlap7)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC1, on_on_overlap6)
 
 def on_on_zero(status):
     global BossAlive, espada
@@ -541,15 +531,15 @@ def on_on_zero(status):
     tiles.place_on_tile(espada, tiles.get_tile_location(30, 13))
 statusbars.on_zero(StatusBarKind.enemy_health, on_on_zero)
 
-def on_on_overlap8(sprite102, otherSprite82):
+def on_on_overlap7(sprite102, otherSprite82):
     otherSprite82.say_text("Why look for money, if you don't have a sword", 200, False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC6, on_on_overlap8)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC6, on_on_overlap7)
 
-def on_on_overlap9(sprite6, otherSprite4):
-    otherSprite4.say_text("I am the mage, the sword is somwhere in the second phase",
+def on_on_overlap8(sprite6, otherSprite4):
+    otherSprite4.say_text("I am the mage, the sword is somwhere in the second phase. Perhaps that strange portal can bring you there",
         200,
         False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC4, on_on_overlap9)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC4, on_on_overlap8)
 
 def level_2():
     global NPC62
@@ -569,10 +559,10 @@ def level_2():
     """))
     music.stop_all_sounds()
     music.play(music.create_song(hex("""
-            0078000408040106001c00010a006400f401640000040000000000000000000000000000000002af00000004000212160400080001160c0010000312141614001800011618001c0001161c002000030f12162000240001162400280002121628002c0001163000340002121634003800011238003c0001123c004000011440004400011244004800011248004c000212144c0050000112540058000311121658005c0001165c006000011260006400011468006c0001166c007000011670007400011474007800011678007c00030f12167c008000021114
+            00780004080200
         """)),
         music.PlaybackMode.LOOPING_IN_BACKGROUND)
-    knight.set_position(10, 10)
+    knight.set_position(26, 29)
     knight.ay = 500
     # Crear NPC del nivel 2
     for value282 in tiles.get_tiles_by_type(assets.tile("""
@@ -693,19 +683,19 @@ def boss1():
     statusbar.max = 1000
     statusbar.value = 1000
 
-def on_on_overlap10(sprite5, otherSprite32):
+def on_on_overlap9(sprite5, otherSprite32):
     game.game_over(True)
     game.set_game_over_effect(True, effects.confetti)
-sprites.on_overlap(SpriteKind.player, SpriteKind.Espada, on_on_overlap10)
+sprites.on_overlap(SpriteKind.player, SpriteKind.Espada, on_on_overlap9)
 
-def on_on_overlap11(sprite10, otherSprite8):
+def on_on_overlap10(sprite10, otherSprite8):
     if knight.vy > 0 and knight.y < MyBoss.y:
         knight.vy = -150
         statusbar.value += -150
     else:
         info.change_life_by(-1)
     pause(1000)
-sprites.on_overlap(SpriteKind.player, SpriteKind.Boss1, on_on_overlap11)
+sprites.on_overlap(SpriteKind.player, SpriteKind.Boss1, on_on_overlap10)
 
 def main_menu():
     global Play, Options, knightExists, croshair
@@ -752,36 +742,36 @@ def main_menu():
                 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccbbccccbbbbbbbcccbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
                 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccbbccccbbbbbbbcccbbbccccbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
                 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbcccbbbbbbbcccbbbccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbcccbbbbcccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbbbbbbbccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccbbbccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccbbbbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbbbbbccccbbbbbbbbbbbbcccbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbcccbbbbbbbbbbbbcccbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbcccbbbbbbbbbbbbcccbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbbbbccccbbbbbbbbbbbbccccccccbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbbbcccccbbbbbbbbccccccccccccbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccbbcccccccbbbbbbbbccccccccccccbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccbbbbbbbbbccccccccccbbbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccccbbbbbbbbbbbbbccccbbbbbbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccbbbbbbbbbbbbbbbcccbbbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbbcccbccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbccccccbbbbbbbbbcccbbbbbbbbbbcccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbccccccccccbbbbbbbcccbbbbbbbbbbcccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbccccccccccccbbbbbbcccbbbbbbbbbbcccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbcccccccccccccbbbbbbcccbbbbbbbbbcccccbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbcccccbbbbccccbbbbbbcccbbbbcccbbccccbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbccccbbbbbccccbbbbbbccccbbbcccbbcccbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbcccbbbbbcccccbbcccbccccccccccbbcccbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbcccbbbbcccccccccccbccccccccccbbcccbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbcccbbbbcccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbbbbbbbccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf69ffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf9966cfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf9199666fbbbffffbbbbbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf911996cffff6c6cffbbbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc3193a6cfc6cccccc6fbbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfa99a99fccccc66ccccfbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf991999fc666cc6966ccfbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf99961fc69b6c666b6c6fbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccbbbccccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf999f9f699966c6cfbccfbbbbbbbbbbbbbbbbb
+                bbbbbbbbbfffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccbbbbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbf9c1fcfc619996ccfbfbcfbbbbbbbbbbbbbbbbb
+                bbbbbbbbff22222ffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbbbbbccccbbbbbbbbbbbbcccbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbf16f9fcc699b91ccfbbf9cfbbbbbbbbbbbbbbbbb
+                bbbbbbbbf2ff2222fbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbcccbbbbbbbbbbbbcccbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbf96f9fc66b9699cccfbf966fbbbbbbbbbbbbbbbb
+                bbbbbbbbfffff22fffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbcccbbbbbbbbbbbbcccbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbbf19cf9f69996b69cc6fbf99cfbbbbbbbbbbbbbbbb
+                bbbbbbbbbbfdddbbbbbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbbbbccccbbbbbbbbbbbbccccccccbbbcccbbbbbbbbbbbbbbbbbbbbbf99fbfbf9999bc9cccfbf19cfbbbbbbbbbbbbbbbb
+                bbbbbbbbbbfdfffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccbbbbbcccccbbbbbbbbccccccccccccbbbcccbbbbbbbbbbbbbbbbbbbbf99bfbbbf99999bcbccfbbf6fbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbfbfdddbbbbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccbbcccccccbbbbbbbbccccccccccccbbbccccbbbbbbbbbbbbbbbbbbf991fbbbbf9b999666cc6fbf6fbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbfbfdfbfbfbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccbbbbbbbbbccccccccccbbbbbccccbbbbbbbbbbbbbbbbbbfb99fbbbf199919666cccfbf9fbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbfbfbfbfbfbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccccbbbbbbbbbbbbbccccbbbbbbbbccccbbbbbbbbbbbbbbbbbbbfb9fbbbf199996696cccfbbfbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbfbfbfbfbfbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccbbbbbbbbbbbbbbbcccbbbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbf9fbbbf19996c66ccccfbbbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbfbfbbbbbbbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbbcccbbbbbbbbbbbbbbbbbbbbf6fbbf19996ccc6c6cfbbbbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbffffffffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbbbbbbbbbbbbbcccbbbbbbbbbbcccbccccccbbbbbbbbbbbbbf9fbbf19966cccc66991fbbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbfccc444444fbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbbbccccccbbbbbbbbbcccbbbbbbbbbbcccccccccccbbbbbbbbbbbbf6fbbf9996ccfccc6999fbbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbfccc4ffffffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbbccccccccccbbbbbbbcccbbbbbbbbbbcccccccccccbbbbbbbbbbbbbfbbf19966ccffcc66991fbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbfccc4fbbbbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbccccccccccccbbbbbbcccbbbbbbbbbbcccccccccccbbbbbbbbbbbbbbbbf9966ccfbbfcc6699fbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbfccc4fbbbbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbcccccccccccccbbbbbbcccbbbbbbbbbcccccbbbbcccbbbbbbbbbbbbbbbbf99c6c6fbbf6c6c99fbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbfccc4fffbbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbcccccbbbbccccbbbbbbcccbbbbcccbbccccbbbbbcccbbbbbbbbbbbbbbb9966ccccfbbfccc6699fbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbf4444fffbffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbccccbbbbbccccbbbbbbccccbbbcccbbcccbbbbbbcccbbbbbbbbbbbbbbb99c6c6c6fbbf6c6cc69fbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbffffffbfffbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbcccbbbbbcccccbbcccbccccccccccbbcccbbbbbbcccbbbbbbbbbbbbbbb966cccffbbbbfffffffbbbbbbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbcccbbbbcccccccccccbccccccccccbbcccbbbbbbcccbbbbbbbbbbbbbbb6cc6c6bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
                 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbccccbbccccccccccccbbcccccccccbbcccbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
                 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbccccccccccccccccccbbbbccccccbbbcccbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
                 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccbbbccccccccccbbcccccbbbbbbbbbbbbbbcccbbbbbbcccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
@@ -858,24 +848,38 @@ def main_menu():
     knightExists = False
     croshair = sprites.create(img("""
             . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . f f . . . . 
-                    . . . . . . . f f f f f . . . . 
-                    . . . . . f f f . . f . . . . . 
-                    . . . . f f . . . f f . . . . . 
-                    . . . . . f f . . f . . . . . . 
-                    . . . . . f f f f f . . . . . . 
-                    . . . . f f . f f . . . . . . . 
-                    . . . f f . . . . . . . . . . . 
-                    . . f f . . . . . . . . . . . . 
-                    . f f . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . .
+                    . . . . . . . . . . . . c c c . 
+                    . . . . . . . . . . . c 1 1 c . 
+                    . . . . . . . . . . c 1 b d c . 
+                    . . . . . . . . . c 1 c d c . . 
+                    . . . . . . . . c 1 c d f . . . 
+                    . e e . . . . c d c d f . . . . 
+                    . e 5 e . . f d c b f . . . . . 
+                    . f 5 e . f b c b f . . . . . . 
+                    . f 5 5 e e c c f . . . . . . . 
+                    . . e e 2 3 e f . . . . . . . . 
+                    . . f f e 2 e . . . . . . . . . 
+                    . . f e f e e f f . . . . . . . 
+                    f f e f f f 5 5 e f . . . . . . 
+                    f f f . . . e e f f . . . . . . 
+                    . f f . . . . . . . . . . . . .
         """),
         SpriteKind.crosshair)
     controller.move_sprite(croshair)
+
+def on_on_overlap11(sprite3, otherSprite3):
+    info.change_score_by(1)
+    music.play(music.create_sound_effect(WaveShape.SQUARE,
+            4253,
+            3852,
+            255,
+            0,
+            200,
+            SoundExpressionEffect.NONE,
+            InterpolationCurve.LINEAR),
+        music.PlaybackMode.IN_BACKGROUND)
+    sprites.destroy(otherSprite3)
+sprites.on_overlap(SpriteKind.player, SpriteKind.Coin, on_on_overlap11)
 
 def on_on_overlap12(sprite11, otherSprite9):
     sprites.destroy(otherSprite9)
@@ -885,15 +889,11 @@ def on_on_overlap12(sprite11, otherSprite9):
         info.change_life_by(-1)
 sprites.on_overlap(SpriteKind.player, SpriteKind.Monstruo, on_on_overlap12)
 
-def on_on_overlap13(sprite52, otherSprite322):
-    otherSprite322.say_text("FRAAANKENSTEEEINN", 200, False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC3, on_on_overlap13)
-
-def on_on_overlap14(sprite43, otherSprite23):
+def on_on_overlap13(sprite43, otherSprite23):
     otherSprite23.say_text("Thank you! Look for the Frank to find your sword.",
         200,
         False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC2, on_on_overlap14)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC2, on_on_overlap13)
 
 def level_1():
     global knightExists, knight, abrusto, coin, NPC12, NPC22, NPC32, NPC42, NPC62, BreackableBlock
@@ -1025,7 +1025,7 @@ def level_1():
         LilDemon
     """), SpriteKind.player)
     music.play(music.create_song(hex("""
-            0078000408040200001c00010a006400f401640000040000000000000000000000000005000004b40000000400012504000800012508000c0001240c001000012210001400012214001800012018001c00011e1c002000011e24002800012228002c00011d2c003000012230003400012534003800012938003c0001273c004000012540004400012044004800012048004c0001274c005000012250005400011e58005c00011e5c006000012260006400012264006800011e68006c00011d6c007000011b70007400011b74007800011d78007c0001247c008000012706001c00010a006400f4016400000400000000000000000000000000000000026800000004000312141608000c00031214160c00100003121416140018000312141618001c000312141624002800031214162c0030000312141638003c0003121416400044000312141644004800031214164c00500003121416540058000312141658005c0003121416
+            00780004080200
         """)),
         music.PlaybackMode.LOOPING_IN_BACKGROUND)
     info.set_life(lives)
@@ -1522,6 +1522,11 @@ def level_1():
             transparency16
         """))
     BouncingEnemies()
+
+def on_on_overlap14(sprite52, otherSprite322):
+    otherSprite322.say_text("FRAAANKENSTEEEINN", 200, False)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC3, on_on_overlap14)
+
 BreackableBlock: Sprite = None
 NPC42: Sprite = None
 NPC32: Sprite = None
