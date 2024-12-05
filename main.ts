@@ -55,6 +55,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (knightExists) {
         if (jump_count < 2) {
             knight.vy = -200
+            music.play(music.createSoundEffect(WaveShape.Noise, 330, 1801, 148, 148, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
             jump_count += 1
         }
     }
@@ -349,8 +350,13 @@ sprites.onOverlap(SpriteKind.crosshair, SpriteKind.button, function (sprite4, ot
     	
     }
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.breackableNotch, function (sprite, otherSprite) {
+    music.play(music.createSoundEffect(WaveShape.Noise, 553, 419, 255, 139, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+    sprites.destroy(otherSprite)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite, otherSprite) {
     info.changeScoreBy(1)
+    music.play(music.createSoundEffect(WaveShape.Square, 4253, 3852, 255, 0, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
     sprites.destroy(otherSprite)
 })
 sprites.onOverlap(SpriteKind.Monstruo, SpriteKind.EnemyBounce, function (sprite8, otherSprite6) {
@@ -503,6 +509,7 @@ function level_2 () {
     // Configurar el nivel 2
     scene.setBackgroundColor(9)
     tiles.setCurrentTilemap(tilemap`level10`)
+    music.stopAllSounds()
     music.play(music.createSong(hex`0078000408040106001c00010a006400f401640000040000000000000000000000000000000002af00000004000212160400080001160c0010000312141614001800011618001c0001161c002000030f12162000240001162400280002121628002c0001163000340002121634003800011238003c0001123c004000011440004400011244004800011248004c000212144c0050000112540058000311121658005c0001165c006000011260006400011468006c0001166c007000011670007400011474007800011678007c00030f12167c008000021114`), music.PlaybackMode.LoopingInBackground)
     knight.setPosition(10, 10)
     knight.ay = 500

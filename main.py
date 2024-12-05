@@ -60,6 +60,15 @@ def on_up_pressed():
     if knightExists:
         if jump_count < 2:
             knight.vy = -200
+            music.play(music.create_sound_effect(WaveShape.NOISE,
+                    330,
+                    1801,
+                    148,
+                    148,
+                    100,
+                    SoundExpressionEffect.NONE,
+                    InterpolationCurve.LINEAR),
+                music.PlaybackMode.IN_BACKGROUND)
             jump_count += 1
 controller.up.on_event(ControllerButtonEvent.PRESSED, on_up_pressed)
 
@@ -357,15 +366,39 @@ def on_on_overlap2(sprite4, otherSprite2):
 sprites.on_overlap(SpriteKind.crosshair, SpriteKind.button, on_on_overlap2)
 
 def on_on_overlap3(sprite, otherSprite):
-    info.change_score_by(1)
+    music.play(music.create_sound_effect(WaveShape.NOISE,
+            553,
+            419,
+            255,
+            139,
+            200,
+            SoundExpressionEffect.NONE,
+            InterpolationCurve.LINEAR),
+        music.PlaybackMode.IN_BACKGROUND)
     sprites.destroy(otherSprite)
-sprites.on_overlap(SpriteKind.player, SpriteKind.Coin, on_on_overlap3)
+sprites.on_overlap(SpriteKind.player,
+    SpriteKind.breackableNotch,
+    on_on_overlap3)
 
-def on_on_overlap4(sprite8, otherSprite6):
+def on_on_overlap4(sprite2, otherSprite3):
+    info.change_score_by(1)
+    music.play(music.create_sound_effect(WaveShape.SQUARE,
+            4253,
+            3852,
+            255,
+            0,
+            200,
+            SoundExpressionEffect.NONE,
+            InterpolationCurve.LINEAR),
+        music.PlaybackMode.IN_BACKGROUND)
+    sprites.destroy(otherSprite3)
+sprites.on_overlap(SpriteKind.player, SpriteKind.Coin, on_on_overlap4)
+
+def on_on_overlap5(sprite8, otherSprite6):
     sprite8.vx = sprite8.vx * -1
-sprites.on_overlap(SpriteKind.Monstruo, SpriteKind.EnemyBounce, on_on_overlap4)
+sprites.on_overlap(SpriteKind.Monstruo, SpriteKind.EnemyBounce, on_on_overlap5)
 
-def on_overlap_tile2(sprite2, location2):
+def on_overlap_tile2(sprite22, location2):
     game.game_over(False)
     game.set_game_over_effect(False, effects.melt)
 scene.on_overlap_tile(SpriteKind.player,
@@ -468,17 +501,17 @@ def BouncingEnemies():
         """))
         EnemyBouncePad.set_flag(SpriteFlag.INVISIBLE, True)
 
-def on_on_overlap5(sprite42, otherSprite22):
+def on_on_overlap6(sprite42, otherSprite22):
     sprites.destroy(otherSprite22)
     if knight.y + 5 < otherSprite22.y:
         info.change_score_by(1)
     else:
         info.change_life_by(-1)
-sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap5)
+sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap6)
 
-def on_on_overlap6(sprite9, otherSprite7):
+def on_on_overlap7(sprite9, otherSprite7):
     otherSprite7.say_text("Hi mighty knight, I see you lost your sword.", 200, False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC1, on_on_overlap6)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC1, on_on_overlap7)
 
 def on_on_zero(status):
     global BossAlive, espada
@@ -508,15 +541,15 @@ def on_on_zero(status):
     tiles.place_on_tile(espada, tiles.get_tile_location(30, 13))
 statusbars.on_zero(StatusBarKind.enemy_health, on_on_zero)
 
-def on_on_overlap7(sprite102, otherSprite82):
+def on_on_overlap8(sprite102, otherSprite82):
     otherSprite82.say_text("Why look for money, if you don't have a sword", 200, False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC6, on_on_overlap7)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC6, on_on_overlap8)
 
-def on_on_overlap8(sprite6, otherSprite4):
+def on_on_overlap9(sprite6, otherSprite4):
     otherSprite4.say_text("I am the mage, the sword is somwhere in the second phase",
         200,
         False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC4, on_on_overlap8)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC4, on_on_overlap9)
 
 def level_2():
     global NPC62
@@ -534,6 +567,11 @@ def level_2():
     tiles.set_current_tilemap(tilemap("""
         level10
     """))
+    music.stop_all_sounds()
+    music.play(music.create_song(hex("""
+            0078000408040106001c00010a006400f401640000040000000000000000000000000000000002af00000004000212160400080001160c0010000312141614001800011618001c0001161c002000030f12162000240001162400280002121628002c0001163000340002121634003800011238003c0001123c004000011440004400011244004800011248004c000212144c0050000112540058000311121658005c0001165c006000011260006400011468006c0001166c007000011670007400011474007800011678007c00030f12167c008000021114
+        """)),
+        music.PlaybackMode.LOOPING_IN_BACKGROUND)
     knight.set_position(10, 10)
     knight.ay = 500
     # Crear NPC del nivel 2
@@ -655,19 +693,19 @@ def boss1():
     statusbar.max = 1000
     statusbar.value = 1000
 
-def on_on_overlap9(sprite5, otherSprite3):
+def on_on_overlap10(sprite5, otherSprite32):
     game.game_over(True)
     game.set_game_over_effect(True, effects.confetti)
-sprites.on_overlap(SpriteKind.player, SpriteKind.Espada, on_on_overlap9)
+sprites.on_overlap(SpriteKind.player, SpriteKind.Espada, on_on_overlap10)
 
-def on_on_overlap10(sprite10, otherSprite8):
+def on_on_overlap11(sprite10, otherSprite8):
     if knight.vy > 0 and knight.y < MyBoss.y:
         knight.vy = -150
         statusbar.value += -150
     else:
         info.change_life_by(-1)
     pause(1000)
-sprites.on_overlap(SpriteKind.player, SpriteKind.Boss1, on_on_overlap10)
+sprites.on_overlap(SpriteKind.player, SpriteKind.Boss1, on_on_overlap11)
 
 def main_menu():
     global Play, Options, knightExists, croshair
@@ -839,23 +877,23 @@ def main_menu():
         SpriteKind.crosshair)
     controller.move_sprite(croshair)
 
-def on_on_overlap11(sprite11, otherSprite9):
+def on_on_overlap12(sprite11, otherSprite9):
     sprites.destroy(otherSprite9)
     if knight.y + 5 < otherSprite9.y:
         info.change_score_by(1)
     else:
         info.change_life_by(-1)
-sprites.on_overlap(SpriteKind.player, SpriteKind.Monstruo, on_on_overlap11)
+sprites.on_overlap(SpriteKind.player, SpriteKind.Monstruo, on_on_overlap12)
 
-def on_on_overlap12(sprite52, otherSprite32):
-    otherSprite32.say_text("FRAAANKENSTEEEINN", 200, False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC3, on_on_overlap12)
+def on_on_overlap13(sprite52, otherSprite322):
+    otherSprite322.say_text("FRAAANKENSTEEEINN", 200, False)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC3, on_on_overlap13)
 
-def on_on_overlap13(sprite43, otherSprite23):
+def on_on_overlap14(sprite43, otherSprite23):
     otherSprite23.say_text("Thank you! Look for the Frank to find your sword.",
         200,
         False)
-sprites.on_overlap(SpriteKind.player, SpriteKind.NPC2, on_on_overlap13)
+sprites.on_overlap(SpriteKind.player, SpriteKind.NPC2, on_on_overlap14)
 
 def level_1():
     global knightExists, knight, abrusto, coin, NPC12, NPC22, NPC32, NPC42, NPC62, BreackableBlock
@@ -986,6 +1024,10 @@ def level_1():
     knight = sprites.create(assets.image("""
         LilDemon
     """), SpriteKind.player)
+    music.play(music.create_song(hex("""
+            0078000408040200001c00010a006400f401640000040000000000000000000000000005000004b40000000400012504000800012508000c0001240c001000012210001400012214001800012018001c00011e1c002000011e24002800012228002c00011d2c003000012230003400012534003800012938003c0001273c004000012540004400012044004800012048004c0001274c005000012250005400011e58005c00011e5c006000012260006400012264006800011e68006c00011d6c007000011b70007400011b74007800011d78007c0001247c008000012706001c00010a006400f4016400000400000000000000000000000000000000026800000004000312141608000c00031214160c00100003121416140018000312141618001c000312141624002800031214162c0030000312141638003c0003121416400044000312141644004800031214164c00500003121416540058000312141658005c0003121416
+        """)),
+        music.PlaybackMode.LOOPING_IN_BACKGROUND)
     info.set_life(lives)
     info.set_score(0)
     scene.camera_follow_sprite(knight)
