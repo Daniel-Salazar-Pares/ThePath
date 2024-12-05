@@ -361,6 +361,15 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile32`, function (sprite32
 sprites.onOverlap(SpriteKind.Monstruo, SpriteKind.EnemyBounce, function (sprite8, otherSprite6) {
     sprite8.vx = sprite8.vx * -1
 })
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (knightExists) {
+        if (jump_count < 2) {
+            knight.vy = -200
+            music.play(music.createSoundEffect(WaveShape.Noise, 330, 1801, 148, 148, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+            jump_count += 1
+        }
+    }
+})
 function BouncingEnemies () {
     for (let value2 of tiles.getTilesByType(assets.tile`bee`)) {
         monstruo = sprites.create(img`
